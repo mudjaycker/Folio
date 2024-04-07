@@ -1,5 +1,5 @@
 <script>
-  import Kikotoo from "../components/Kikotoo.svelte";
+  import Kikotoo from "../components/Kikokotoo.svelte";
 </script>
 
 <section class="hero is-info is-fullheight">
