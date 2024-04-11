@@ -44,7 +44,7 @@
   #footer {
     background-color: $_3rd-bg;
     width: 100%;
-    height: 10%;
+    height: 15%;
     position: fixed;
     bottom: 0;
     display: flex;
@@ -57,11 +57,8 @@
   }
   .footer-item {
     width: 20%;
+    height: 35%;
     background-color: #0d5a5a;
-    height: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-radius: 5px;
     &:hover{
       background-color: $_2nd-bg;
@@ -69,6 +66,12 @@
     a {
       text-decoration: none;
       color: white;
+      width: 100%;
+      height: 100%;
+      // text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 </style>
