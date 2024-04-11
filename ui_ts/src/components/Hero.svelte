@@ -1,10 +1,15 @@
 <section id="container">
-  <section id="header"></section>
+  <section id="header">
+    <p>Hi I am Maryimana</p>
+  </section>
+
+  <section id="footer"></section>
 </section>
 
 <style lang="scss">
-  $_1st-bg: #9f9fa5;
+  $_1st-bg: #8b9aaf;
   $_2nd-bg: #3f44e3;
+  $_3rd-bg: #292c2c;
 
   #container {
     background-color: $_1st-bg;
@@ -13,8 +18,21 @@
   }
   #header {
     background-color: $_2nd-bg;
+    width: 50%;
+    height: 5%;
+    position: absolute;
+    left: 25%;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+  }
+  #footer {
+    background-color: $_3rd-bg;
     width: 100%;
-    height: 20%;
+    height: 10%;
     position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
   }
 </style>
