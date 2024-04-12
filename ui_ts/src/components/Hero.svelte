@@ -1,6 +1,14 @@
+<script>
+  import Calculator from "../lib/Calculator.svelte";
+
+</script>
 <section id="container">
   <section id="header">
     <p>Hi I am Maryimana</p>
+  </section>
+
+  <section id="center">
+    <Calculator/>
   </section>
 
   <section id="footer">
@@ -29,17 +37,19 @@
   #container {
     background-color: $_1st-bg;
     width: 100vw;
-    height: 100vh;
+    height: 200vh;
+    overflow-y: auto;
   }
   #header {
     background-color: $_2nd-bg;
     width: 50%;
     height: 5%;
-    position: absolute;
+    position: fixed;
     left: 25%;
     color: white;
     text-align: center;
     font-weight: bold;
+    z-index: 100;
   }
   #footer {
     background-color: $_3rd-bg;
@@ -73,5 +83,19 @@
       align-items: center;
       justify-content: center;
     }
+  }
+  #center{
+    // background-color: white;
+    border: 1px solid white;
+    border-radius: 4px;
+    width: 50%;
+    height: 80%;
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 3%;
   }
 </style>
