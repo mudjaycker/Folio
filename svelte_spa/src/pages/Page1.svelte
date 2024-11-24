@@ -4,8 +4,8 @@
 
   let realisations = [
     { title: "simple calculator", img: photo, href: "page-1" },
-    { title: "simple date-picker", img: photo, href: "page-1" },
-    { title: "analogue clock", img: photo, href: "page-1" },
+    { title: "date-picker", img: photo, href: "page-1" },
+    { title: "analogic clock", img: photo, href: "/clock" },
     { title: "bases convertor", img: photo, href: "page-1" },
   ];
 </script>

@@ -1,7 +1,16 @@
 import router from "page";
 import { current_page } from "../store";
 
-const routes = [
+type T_page = typeof import("../pages/Welcome.svelte");
+
+interface Routes {
+  name: string;
+  href: string;
+  component: any;
+  params: Object;
+}
+
+const routes: Routes[] = [
   {
     name: "Welcome",
     href: "/",
@@ -12,6 +21,12 @@ const routes = [
     name: "Page 1",
     href: "/page-1",
     component: import("../pages/Page1.svelte"),
+    params: {},
+  },
+  {
+    name: "Clock",
+    href: "/clock",
+    component: import("../pages/Clock.svelte"),
     params: {},
   },
 ];
