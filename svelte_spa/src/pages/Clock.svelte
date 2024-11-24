@@ -1,6 +1,11 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
 
+  let d1 = new Date(),
+    date = d1.getDate(),
+    month: number | string = d1.getMonth() + 1,
+    year = d1.getFullYear();
+
   let _60 = [];
   for (let i = 1; i < 60; i++) {
     _60.push(i);
@@ -8,9 +13,8 @@
   let hEl: HTMLDivElement;
   let mEl: HTMLDivElement;
   let sEl: HTMLDivElement;
-  let dateEl: HTMLDivElement;
-  let dayEl: HTMLDivElement;
   let interval: number;
+
   let weekday = [
     "Sunday",
     "Monday",
@@ -20,6 +24,8 @@
     "Friday",
     "Saturday",
   ];
+  let today = weekday[d1.getDay()],
+    todayDate = date + "/" + month + "/" + year;
 
   onMount(() => {
     function clock() {
@@ -27,26 +33,19 @@
         h = d.getHours(),
         m = d.getMinutes(),
         s = d.getSeconds(),
-        date = d.getDate(),
-        month: number | string = d.getMonth() + 1,
-        year = d.getFullYear(),
         hDeg = h * 30 + m * (360 / 720),
         mDeg = m * 6 + s * (360 / 3600),
         sDeg = s * 6;
 
-      var day = weekday[d.getDay()];
-
-      if (month < 9) {
+      if (parseInt(JSON.stringify(month)) < 9) {
         month = "0" + month;
       }
 
       hEl.style.transform = "rotate(" + hDeg + "deg)";
       mEl.style.transform = "rotate(" + mDeg + "deg)";
       sEl.style.transform = "rotate(" + sDeg + "deg)";
-      dateEl.innerHTML = date + "/" + month + "/" + year;
-      dayEl.innerHTML = day;
     }
-    interval = setInterval(clock, 500);
+    interval = setInterval(clock, 100);
   });
 
   onDestroy(() => {
@@ -57,8 +56,8 @@
 <main>
   <div id="clock">
     <div>
-      <div bind:this={dateEl} class="info date"></div>
-      <div bind:this={dayEl} class="info day"></div>
+      <div class="info date">{todayDate}</div>
+      <div class="info day">{today}</div>
     </div>
     <div class="dot"></div>
     <div>
@@ -186,16 +185,16 @@
     left: 50%;
     margin-left: -1px;
     transform-origin: 50% 150px;
-  }
-  .diallines:nth-of-type(5n) {
-    position: absolute;
-    z-index: 2;
-    width: 4px;
-    height: 25px;
-    background: #666;
-    left: 50%;
-    margin-left: -1px;
-    transform-origin: 50% 150px;
+    &:nth-of-type(5n) {
+      position: absolute;
+      z-index: 2;
+      width: 4px;
+      height: 25px;
+      background: #666;
+      left: 50%;
+      margin-left: -1px;
+      transform-origin: 50% 150px;
+    }
   }
 
   .info {
