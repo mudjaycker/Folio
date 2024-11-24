@@ -20,7 +20,7 @@
           You just have to click to the button bellow 👇
         </li>
       </ul>
-      <button on:click={() => redirect("/page-1")}>Start a tour</button>
+      <button class="button" on:click={() => redirect("/page-1")}>Start a tour</button>
     </section>
   </section>
 </main>
@@ -34,13 +34,6 @@
 
   :global(body) {
     background-color: #646cffb0;
-  }
-
-  .hero {
-    height: 100vh;
-    width: 100vw;
-    @include flex;
-    color: aliceblue;
   }
   .hero-body {
     min-height: 70%;
@@ -56,28 +49,6 @@
       }
       :nth-child(1) {
         margin-top: 0;
-      }
-    }
-
-    button {
-      border-radius: 8px;
-      border: 1px solid transparent;
-      padding: 0.6em 1.2em;
-      font-size: 1em;
-      font-weight: 500;
-      font-family: inherit;
-      background-color: white;
-      color: black;
-      margin-top: 100px;
-      cursor: pointer;
-      transition: border-color 0.25s;
-      &:hover {
-        border-color: #646cff;
-      }
-
-      &:focus,
-      &:focus-visible {
-        outline: 4px auto -webkit-focus-ring-color;
       }
     }
     // background-color: aquamarine;
