@@ -3,7 +3,7 @@
 
   let d1 = new Date(),
     date = d1.getDate(),
-    month: number | string = d1.getMonth() + 1,
+    month: string = JSON.stringify(d1.getMonth() + 1),
     year = d1.getFullYear();
 
   let _60 = [];
@@ -37,7 +37,7 @@
         mDeg = m * 6 + s * (360 / 3600),
         sDeg = s * 6;
 
-      if (parseInt(JSON.stringify(month)) < 9) {
+      if (parseInt(month) < 9) {
         month = "0" + month;
       }
 
