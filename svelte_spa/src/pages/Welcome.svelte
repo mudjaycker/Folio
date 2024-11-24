@@ -1,17 +1,26 @@
 <script lang="ts">
+  import redirect from "page";
+  import { fly, scale } from "svelte/transition";
+
+  const transition1 = { delay: 1000, x: 200, y: 300 };
+  const transition2 = { delay: 200, x: 100, y: 0 };
 </script>
 
 <main>
   <section class="hero">
     <section class="hero-body">
       <ul>
-        <li id="text1">
+        <li transition:fly={transition1}>
           My name is Maryimana, and I wish you welcome to my website
         </li>
-        <li id="text2">We going to make a tour (if you want obviously)</li>
-        <li id="text3">You just have to the button bellow 👇</li>
+        <li transition:fly={transition2}>
+          We going to make a tour (if you want obviously)
+        </li>
+        <li transition:scale={{delay:500}}>
+          You just have to click to the button bellow 👇
+        </li>
       </ul>
-      <button>Start a tour</button>
+      <button on:click={() => redirect("/page-1")}>Start a tour</button>
     </section>
   </section>
 </main>
@@ -87,15 +96,15 @@
     }
   }
 
-  #text1 {
-    animation: fade-in 1s ease-in-out;
-  }
-  #text2 {
-    animation: fade-in 4s ease-in-out;
-  }
-  #text3 {
-    animation: fade-in 7s ease-in-out;
-  }
+  // #text1 {
+  // animation: fade-in 1s ease-in-out;
+  // }
+  // #text2 {
+  // animation: fade-in 4s ease-in-out;
+  // }
+  // #text3 {
+  // animation: fade-in 7s ease-in-out;
+  // }
 
   @media only screen and (max-width: 700px) {
     .hero {

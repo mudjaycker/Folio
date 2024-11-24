@@ -4,9 +4,9 @@
   import page from "page";
 
   let todayTime = "";
-  const goTo = (href:string) => {
-    page(href)
-  }
+  const goTo = (href: string) => {
+    page(href);
+  };
   onMount(() => {
     const date = new Date();
     const hours = date.getHours().toString().padStart(2, "0");
@@ -15,13 +15,15 @@
   });
 </script>
 
-<Centralise bgcolor="rgb(225, 227, 111)">
-  <div>
-    <h1>Current Time: {todayTime}</h1>
-    <h2>Current Date: {new Date().toLocaleDateString()}</h2>
-    <button on:click={()=>goTo("/")}>Return to Home page</button>
-  </div>
-</Centralise>
+<main>
+  <Centralise bgcolor="rgb(225, 227, 111)">
+    <div>
+      <h1>Current Time: {todayTime}</h1>
+      <h2>Current Date: {new Date().toLocaleDateString()}</h2>
+      <button on:click={() => goTo("/welcome")}>Return to Home page</button>
+    </div>
+  </Centralise>
+</main>
 
 <style lang="scss">
   h1 {
