@@ -4,7 +4,7 @@ import { current_page } from "../store";
 const routes = [
   {
     name: "Welcome",
-    href: "/welcome",
+    href: "/",
     component: import("../pages/Welcome.svelte"),
     params: {},
   },

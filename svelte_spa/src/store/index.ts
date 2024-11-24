@@ -3,7 +3,7 @@ import Welcome from "../pages/Welcome.svelte";
 
 const DEFAULT_PAGE = {
   name: "Welcome",
-  href: "/welcome",
+  href: "/",
   component: Welcome,
   params: {},
 };

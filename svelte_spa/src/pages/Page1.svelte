@@ -1,4 +1,5 @@
 <script lang="ts">
+  import {fly, scale} from "svelte/transition"
   import photo from "../assets/Karos-.jpg";
 
   let realisations = [
@@ -9,11 +10,11 @@
   ];
 </script>
 
-<main>
+<main transition:scale={{delay:500, duration:1000}}>
   <section class="hero">
     <section class="title">
       <h1>
-        😎 <span>Here this is an exemple of what I can do just for fun 👇</span> 
+        😎 <span>Here are few exemples of what I can do just for fun 👇</span> 
       </h1>
     </section>
     <section class="columns">
