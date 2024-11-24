@@ -1,10 +1,10 @@
 import { writable } from "svelte/store";
-import Home from "../pages/Home.svelte";
+import Welcome from "../pages/Welcome.svelte";
 
 const DEFAULT_PAGE = {
-  name: "Home",
-  href: "/",
-  component: Home,
+  name: "Welcome",
+  href: "/welcome",
+  component: Welcome,
   params: {},
 };
 

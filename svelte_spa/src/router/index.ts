@@ -3,9 +3,9 @@ import { current_page } from "../store";
 
 const routes = [
   {
-    name: "Home",
-    href: "/",
-    component: import("../pages/Home.svelte"),
+    name: "Welcome",
+    href: "/welcome",
+    component: import("../pages/Welcome.svelte"),
     params: {},
   },
   {
