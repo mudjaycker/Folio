@@ -28,9 +28,9 @@
 </script>
 
 <main>
-    <section>
-      <h1 style="text-align: center; color:white">Simple calculator</h1>
-    </section>
+  <section>
+    <h1 style="text-align: center; color:white">Simple calculator</h1>
+  </section>
   <section class="cadre">
     <section class="header">
       <div class="screen">
@@ -136,14 +136,13 @@
     }
 
     .cadre {
-    //   margin-top: 100px;
+      //   margin-top: 100px;
       width: 380px;
     }
- 
   }
   @media only screen and (max-width: 850px) {
     .cadre {
-    //   height: 90%;
+      //   height: 90%;
       overflow-y: auto;
     }
   }
