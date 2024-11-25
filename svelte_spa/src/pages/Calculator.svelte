@@ -1,6 +1,7 @@
 <script lang="ts">
   import { range } from "../utils";
 
+  let result: number;
   let entry = "";
   let authorized = Array.from(range(10)).map((x) => x.toString());
   authorized = [...authorized, "+", "-", "/", "*", " ", "(", ")"];
@@ -8,7 +9,7 @@
   function pushEntry(value: string | number) {
     entry += String(value);
   }
-  
+
   function popEntry() {
     let entryList = entry.split("");
     entryList.pop();
@@ -19,10 +20,17 @@
     let entryList = entry.split("").filter((x) => authorized.includes(x));
     entry = entryList.join("");
   }
-  $: result = eval(entry);
+  $: {
+    try {
+      result = eval(entry);
+    } catch {} // ignore when eval throws exception
+  }
 </script>
 
 <main>
+    <section>
+      <h1 style="text-align: center; color:white">Simple calculator</h1>
+    </section>
   <section class="cadre">
     <section class="header">
       <div class="screen">
@@ -55,8 +63,13 @@
     height: 100vh;
     width: 100vw;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
     gap: 10px;
   }
   .cadre {
@@ -65,7 +78,7 @@
     gap: 100px;
     background-color: #864ea0;
     width: 500px;
-    height: 700px;
+    max-height: 700px;
     padding-top: 50px;
     align-items: center;
     border-radius: 10px;
@@ -84,7 +97,6 @@
   }
 
   .key-tab {
-    border: solid 3px red;
     display: flex;
     height: 500px;
     padding: 30px;
@@ -112,6 +124,27 @@
       width: 130px;
       height: 50px;
       font-size: large;
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    .keyboard {
+      margin-left: 30px;
+      button {
+        width: 80px;
+      }
+    }
+
+    .cadre {
+    //   margin-top: 100px;
+      width: 380px;
+    }
+ 
+  }
+  @media only screen and (max-width: 850px) {
+    .cadre {
+    //   height: 90%;
+      overflow-y: auto;
     }
   }
 </style>
