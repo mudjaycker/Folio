@@ -21,6 +21,7 @@
     "Friday",
     "Saturday",
   ];
+  month = month.padStart(2, "0");
   let today = weekday[d1.getDay()],
     todayDate = date + "/" + month + "/" + year;
 
@@ -33,10 +34,6 @@
         hDeg = h * 30 + m * (360 / 720),
         mDeg = m * 6 + s * (360 / 3600),
         sDeg = s * 6;
-
-      if (parseInt(month) < 9) {
-        month = "0" + month;
-      }
 
       hEl.style.transform = "rotate(" + hDeg + "deg)";
       mEl.style.transform = "rotate(" + mDeg + "deg)";
