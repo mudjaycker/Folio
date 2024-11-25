@@ -17,7 +17,7 @@
           We going to make a tour (if you want obviously 😉)
         </li>
         <li id="text3">
-          You just have to click to the button below 👇
+          You just have to click to the button below 👇🏿
         </li>
       </ul>
       <button class="button" on:click={() => redirect("/page-1")}>Start a tour</button>

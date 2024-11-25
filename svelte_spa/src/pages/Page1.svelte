@@ -15,7 +15,7 @@
   <section class="hero">
     <section class="title">
       <h1>
-        😎 <span>Here are few examples of what I can do just for fun 👇</span> 
+        😎 <span>Here are few examples of what I can do just for fun 👇🏿</span> 
       </h1>
     </section>
     <section class="columns">
