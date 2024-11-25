@@ -6,7 +6,7 @@ type T_page = typeof import("../pages/Welcome.svelte");
 interface Routes {
   name: string;
   href: string;
-  component: any;
+  component: Promise<T_page>;
   params: Object;
 }
 
