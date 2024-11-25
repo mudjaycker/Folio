@@ -1,15 +1,12 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
+  import { range } from "../utils";
 
   let d1 = new Date(),
     date = d1.getDate(),
     month: string = JSON.stringify(d1.getMonth() + 1),
     year = d1.getFullYear();
 
-  let _60 = [];
-  for (let i = 1; i < 60; i++) {
-    _60.push(i);
-  }
   let hEl: HTMLDivElement;
   let mEl: HTMLDivElement;
   let sEl: HTMLDivElement;
@@ -72,7 +69,7 @@
       <span class="h12">12</span>
     </div>
     <div class="diallines"></div>
-    {#each _60 as i}
+    {#each range(1, 60) as i}
       <div class="diallines" style="transform: rotate({6 * i}deg);"></div>
     {/each}
   </div>
