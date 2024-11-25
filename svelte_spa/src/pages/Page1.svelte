@@ -1,11 +1,12 @@
 <script lang="ts">
-  import {fly, scale} from "svelte/transition"
+  import {scale} from "svelte/transition"
   import photo from "../assets/Karos-.jpg";
+  import clockImage from "../assets/clock.png"
 
   let realisations = [
     { title: "simple calculator", img: photo, href: "page-1" },
     { title: "date-picker", img: photo, href: "page-1" },
-    { title: "analogic clock", img: photo, href: "/clock" },
+    { title: "analogic clock", img: clockImage, href: "/clock" },
     { title: "bases convertor", img: photo, href: "page-1" },
   ];
 </script>
@@ -14,7 +15,7 @@
   <section class="hero">
     <section class="title">
       <h1>
-        😎 <span>Here are few exemples of what I can do just for fun 👇</span> 
+        😎 <span>Here are few examples of what I can do just for fun 👇</span> 
       </h1>
     </section>
     <section class="columns">
@@ -27,10 +28,10 @@
             <div class="card-content">
               <img
                 class="card-image"
+                width="392"
+                height="350"
                 alt=""
                 src={real.img}
-                width="392"
-                height="250"
               />
             </div>
             <div class="card-footer">
@@ -61,7 +62,7 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 100px;
-    width: 50%;
+    width: 70%;
     height: 50%;
     overflow-y: auto;
     padding-right: 0;
