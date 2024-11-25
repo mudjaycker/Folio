@@ -1,22 +1,16 @@
 import router from "page";
 import { current_page } from "../store";
 
-type T_page = typeof import("../pages/Welcome.svelte");
+const WELCOME_ROUTE = {
+  name: "Welcome",
+  href: "/",
+  component: import("../pages/Welcome.svelte"),
+  params: {},
+};
+type Route = typeof WELCOME_ROUTE;
 
-interface Routes {
-  name: string;
-  href: string;
-  component: Promise<T_page>;
-  params: Object;
-}
-
-const routes: Routes[] = [
-  {
-    name: "Welcome",
-    href: "/",
-    component: import("../pages/Welcome.svelte"),
-    params: {},
-  },
+const routes: Route[] = [
+  WELCOME_ROUTE,
   {
     name: "Page 1",
     href: "/page-1",
@@ -27,6 +21,12 @@ const routes: Routes[] = [
     name: "Clock",
     href: "/clock",
     component: import("../pages/Clock.svelte"),
+    params: {},
+  },
+  {
+    name: "Calculator",
+    href: "/calculator",
+    component: import("../pages/Calculator.svelte"),
     params: {},
   },
 ];

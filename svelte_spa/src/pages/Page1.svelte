@@ -4,7 +4,7 @@
   import clockImage from "../assets/clock.png"
 
   let realisations = [
-    { title: "simple calculator", img: photo, href: "page-1" },
+    { title: "simple calculator", img: photo, href: "/calculator" },
     { title: "date-picker", img: photo, href: "page-1" },
     { title: "analogic clock", img: clockImage, href: "/clock" },
     { title: "bases convertor", img: photo, href: "page-1" },
