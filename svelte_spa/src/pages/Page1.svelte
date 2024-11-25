@@ -1,21 +1,22 @@
 <script lang="ts">
-  import {scale} from "svelte/transition"
+  import { scale } from "svelte/transition";
   import photo from "../assets/Karos-.jpg";
-  import clockImage from "../assets/clock.png"
+  import clockImage from "../assets/clock.png";
+  import calculatorImage from "../assets/calculator.png";
 
   let realisations = [
-    { title: "simple calculator", img: photo, href: "/calculator" },
+    { title: "simple calculator", img: calculatorImage, href: "/calculator" },
     { title: "date-picker", img: photo, href: "page-1" },
     { title: "analogic clock", img: clockImage, href: "/clock" },
     { title: "bases convertor", img: photo, href: "page-1" },
   ];
 </script>
 
-<main transition:scale={{delay:500, duration:1000}}>
+<main transition:scale={{ delay: 500, duration: 1000 }}>
   <section class="hero">
     <section class="title">
       <h1>
-        😎 <span>Here are few examples of what I can do just for fun 👇🏿</span> 
+        😎 <span>Here are few examples of what I can do just for fun 👇🏿</span>
       </h1>
     </section>
     <section class="columns">
