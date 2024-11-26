@@ -3,8 +3,8 @@
   import { range } from "../utils";
 
   let d1 = new Date(),
-    date = d1.getDate(),
-    month: string = JSON.stringify(d1.getMonth() + 1),
+    date = String(d1.getDate()),
+    month: string = String(d1.getMonth() + 1),
     year = d1.getFullYear();
 
   let hEl: HTMLDivElement;
@@ -21,6 +21,7 @@
     "Friday",
     "Saturday",
   ];
+  date = date.padStart(2, "0");
   month = month.padStart(2, "0");
   let today = weekday[d1.getDay()],
     todayDate = date + "/" + month + "/" + year;
