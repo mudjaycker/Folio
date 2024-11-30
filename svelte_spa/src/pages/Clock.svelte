@@ -12,6 +12,14 @@
   let sEl: HTMLDivElement;
   let interval: number;
 
+  const zfill = (value: number | string) => {
+    return String(value).padStart(2, "0");
+  };
+
+  let seconds = "0";
+  let minutes = "0";
+  let hours = "0";
+
   let weekday = [
     "Sunday",
     "Monday",
@@ -21,8 +29,8 @@
     "Friday",
     "Saturday",
   ];
-  date = date.padStart(2, "0");
-  month = month.padStart(2, "0");
+  date = zfill(date);
+  month = zfill(month);
   let today = weekday[d1.getDay()],
     todayDate = date + "/" + month + "/" + year;
 
@@ -39,6 +47,10 @@
       hEl.style.transform = "rotate(" + hDeg + "deg)";
       mEl.style.transform = "rotate(" + mDeg + "deg)";
       sEl.style.transform = "rotate(" + sDeg + "deg)";
+      seconds = zfill(s);
+      minutes = zfill(m);
+      hours = zfill(h);
+      
     }
     interval = setInterval(clock, 100);
   });
@@ -51,6 +63,7 @@
 <main>
   <div id="clock">
     <div>
+      <div class="info current-time">{hours}:{minutes} | {seconds}</div>
       <div class="info date">{todayDate}</div>
       <div class="info day">{today}</div>
     </div>
@@ -73,11 +86,12 @@
   </div>
 </main>
 
-<style>
+<style lang="scss">
+  $height: 300px;
   #clock {
     background: #ececec;
-    width: 300px;
-    height: 300px;
+    width: $height;
+    height: $height;
     margin: 8% auto 0;
     border-radius: 50%;
     border: 14px solid #333;
@@ -217,5 +231,8 @@
   }
   .day {
     top: 200px;
+  }
+  .current-time {
+    top: ($height / 2) + 10px;
   }
 </style>
