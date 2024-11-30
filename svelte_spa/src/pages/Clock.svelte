@@ -12,9 +12,7 @@
   let sEl: HTMLDivElement;
   let interval: number;
 
-  const zfill = (value: number | string) => {
-    return String(value).padStart(2, "0");
-  };
+  const zfill = (value: number | string) => String(value).padStart(2, "0");
 
   let seconds = "0";
   let minutes = "0";
@@ -50,20 +48,21 @@
       seconds = zfill(s);
       minutes = zfill(m);
       hours = zfill(h);
-      
     }
     interval = setInterval(clock, 100);
   });
 
   onDestroy(() => {
     clearInterval(interval);
+    console.log({ interval}, "onDestroy");
+    
   });
 </script>
 
 <main>
   <div id="clock">
     <div>
-      <div class="info current-time">{hours}:{minutes} | {seconds}</div>
+      <div class="info current-time">{hours}:{minutes}</div>
       <div class="info date">{todayDate}</div>
       <div class="info day">{today}</div>
     </div>
@@ -219,6 +218,7 @@
     top: 200px;
     left: 50%;
     margin-left: -60px;
+    font-size: 12px;
     font-family: "Poiret One";
     font-weight: 700;
     z-index: 3;
@@ -233,6 +233,6 @@
     top: 200px;
   }
   .current-time {
-    top: ($height / 2) + 10px;
+    top: calc($height/ 2) + 10px;
   }
 </style>
