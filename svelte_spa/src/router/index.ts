@@ -29,6 +29,12 @@ const routes: Route[] = [
     component: import("../pages/Calculator.svelte"),
     params: {},
   },
+  {
+    name: "Convertor",
+    href: "/convertor",
+    component: import("../pages/Convertor.svelte"),
+    params: {},
+  },
 ];
 
 for (let route of routes) {
