@@ -8,7 +8,7 @@
     { title: "simple calculator", img: calculatorImage, href: "/calculator" },
     { title: "date-picker", img: photo, href: "page-1" },
     { title: "analogic clock", img: clockImage, href: "/clock" },
-    { title: "bases convertor", img: photo, href: "page-1" },
+    { title: "bases convertor", img: photo, href: "/convertor" },
   ];
 </script>
 
