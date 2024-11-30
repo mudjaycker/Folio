@@ -1,8 +1,8 @@
 <script lang="ts">
   import { scale } from "svelte/transition";
   import photo from "../assets/Karos-.jpg";
-  import clockImage from "../assets/clock.png";
-  import calculatorImage from "../assets/calculator.png";
+  import clockImage from "../assets/clock.svg";
+  import calculatorImage from "../assets/calculator.svg";
 
   let realisations = [
     { title: "simple calculator", img: calculatorImage, href: "/calculator" },
