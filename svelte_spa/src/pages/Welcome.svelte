@@ -33,7 +33,7 @@
   }
 
   :global(body) {
-    background-color: #646cffb0;
+    background-color: #4f56dd;
   }
   .hero-body {
     min-height: 70%;
