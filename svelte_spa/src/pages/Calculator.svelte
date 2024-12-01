@@ -42,6 +42,38 @@
       }
     }
   }
+
+  onMount(() => {
+    entryInput.focus();
+    let isEntryFocused = true;
+
+    //EventHandler when a keyboard's key is pressed
+    window.onkeyup = (event) => {
+
+      //The action inside the block will run only
+      //when the input is unfocused
+      if (!isEntryFocused) {
+        
+        //Append the input with the pressed key
+        pushEntry(event.key);
+
+        //Focus the input when an arrow key is pressed
+        if (event.key == "ArrowLeft" || event.key == "ArrowRight") {
+          entryInput.focus();
+        }
+      }
+    };
+
+    //When the input is focused isEntryFocused variable gets true
+    entryInput.onfocus = (event) => {
+      isEntryFocused = true;
+    };
+
+    //When the input is unfocused isEntryFocused variable gets false
+    entryInput.onblur = (event) => {
+      isEntryFocused = false;
+    };
+  });
 </script>
 
 <main>
