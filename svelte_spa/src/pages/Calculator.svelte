@@ -19,10 +19,6 @@
   }
 
   $: {
-    let entryList = entry.split("").filter((x) => authorized.includes(x));
-    entry = entryList.join("");
-  }
-  $: {
     try {
       result = eval(entry);
     } catch {
@@ -45,8 +41,7 @@
 </script>
 
 <main>
-  <section>
-    <h1 style="text-align: center; color:white">Simple calculator</h1>
+  <h1 style="text-align: center; color:white">Simple calculator</h1>
   <section></section>
   <section class="cadre">
     <section class="header">
@@ -129,6 +124,9 @@
       height: 100%;
       font-size: medium;
       width: fit-content;
+      background-color: #fff;
+      color: black;
+      font-weight: 700;
     }
   }
   .keyboard {
@@ -144,6 +142,11 @@
     }
   }
 
+  input {
+    border-radius: 5px;
+    border: 0;
+  }
+
   @media only screen and (max-width: 700px) {
     .keyboard {
       margin-left: 30px;
@@ -153,14 +156,15 @@
     }
 
     .cadre {
-      //   margin-top: 100px;
-      width: 380px;
+      height: 90%;
+      width: 360px;
     }
   }
-  @media only screen and (max-width: 850px) {
+
+  /*   @media only screen and (min-width: 850px) {
     .cadre {
       //   height: 90%;
-      overflow-y: auto;
     }
   }
+ */
 </style>
