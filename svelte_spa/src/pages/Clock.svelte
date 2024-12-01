@@ -1,26 +1,26 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
-  import { range } from "../utils";
+  import { loop, range } from "../utils";
 
   let d1 = new Date(),
     date = String(d1.getDate()),
     month: string = String(d1.getMonth() + 1),
     year = d1.getFullYear();
-
-  let hEl: HTMLDivElement;
-  let mEl: HTMLDivElement;
-  let sEl: HTMLDivElement;
-  let interval: number;
-
-  const zfill = (value: number | string) => String(value).padStart(2, "0");
-
-  let seconds = "0";
-  let minutes = "0";
-  let hours = "0";
-
-  let weekday = [
-    "Sunday",
-    "Monday",
+    
+    let hEl: HTMLDivElement;
+    let mEl: HTMLDivElement;
+    let sEl: HTMLDivElement;
+    let interval: number;
+    
+    const zfill = (value: number | string) => String(value).padStart(2, "0");
+    
+    let seconds = "0";
+    let minutes = "0";
+    let hours = "0";
+    
+    let weekday = [
+      "Sunday",
+      "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
@@ -30,9 +30,16 @@
   date = zfill(date);
   month = zfill(month);
   let today = weekday[d1.getDay()],
-    todayDate = date + "/" + month + "/" + year;
+  todayDate = date + "/" + month + "/" + year;
+  
+  let ddot = ":";
+  let looped = loop(["|", "/", "-", "\\", ""]);
 
   onMount(() => {
+    const animDot = () => {
+      let newSecond = Number(seconds)
+      ddot =  (looped.next()).value;
+    };
     function clock() {
       let d = new Date(),
         h = d.getHours(),
@@ -48,21 +55,21 @@
       seconds = zfill(s);
       minutes = zfill(m);
       hours = zfill(h);
+      animDot()
     }
-    interval = setInterval(clock, 100);
+    interval = setInterval(clock, 1000);
   });
 
   onDestroy(() => {
     clearInterval(interval);
-    console.log({ interval}, "onDestroy");
-    
+    console.log({ interval }, "onDestroy");
   });
 </script>
 
 <main>
   <div id="clock">
     <div>
-      <div class="info current-time">{hours}:{minutes}</div>
+      <div class="info current-time">{hours}{ddot}{minutes}</div>
       <div class="info date">{todayDate}</div>
       <div class="info day">{today}</div>
     </div>
