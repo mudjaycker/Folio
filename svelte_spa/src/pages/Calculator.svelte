@@ -6,7 +6,7 @@
   let authorizeds = Array.from(range(10)).map((x) => x.toString());
   let entryInput: HTMLInputElement;
 
-  authorizeds.push("+", "-", "/", "*", " ", "(", ")");
+  authorizeds.push("+", "-", "/", "%", "*", " ", "(", ")");
 
   function pushEntry(value: string | number) {
     entry += String(value);
