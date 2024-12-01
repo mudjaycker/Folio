@@ -2,7 +2,7 @@
   import redirect from "page";
   import { fly, scale } from "svelte/transition";
 
-  const transition1 = { delay: 100, x: -50, y: 50};
+  const transition1 = { delay: 100, x: -50, y: 50 };
   const transition2 = { delay: 200, x: 100, y: 0 };
 </script>
 
@@ -13,14 +13,12 @@
         <li id="text1">
           My name is Maryimana, and I wish you welcome to my website
         </li>
-        <li id="text2">
-          We going to make a tour (if you want obviously 😉)
-        </li>
-        <li id="text3">
-          You just have to click to the button below 👇🏿
-        </li>
+        <li id="text2">We going to make a tour (if you want obviously 😉)</li>
+        <li id="text3">You just have to click to the button below 👇🏿</li>
       </ul>
-      <button class="button" on:click={() => redirect("/page-1")}>Start a tour</button>
+      <button class="button" on:click={() => redirect("/page-1")}
+        >Start a tour</button
+      >
     </section>
   </section>
 </main>
@@ -32,9 +30,6 @@
     justify-content: center;
   }
 
-  :global(body) {
-    background-color: #4f56dd;
-  }
   .hero-body {
     min-height: 70%;
     width: 50%;
@@ -68,13 +63,13 @@
   }
 
   #text1 {
-  animation: fade-in 3s ease-in-out;
+    animation: fade-in 3s ease-in-out;
   }
   #text2 {
-  animation: fade-in 1s ease-in-out;
+    animation: fade-in 1s ease-in-out;
   }
   #text3 {
-  animation: fade-in 2s ease-in-out;
+    animation: fade-in 2s ease-in-out;
   }
 
   @media only screen and (max-width: 700px) {
