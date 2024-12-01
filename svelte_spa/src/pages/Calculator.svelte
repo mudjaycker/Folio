@@ -214,7 +214,7 @@
     }
     .button {
       width: calc($input-height * 2) !important;
-      height: $input-height / 1.1 !important;
+      height: calc($input-height / 1.1) !important;
     }
     .key-tab {
       margin-left: calc($new-card-width / 4);
