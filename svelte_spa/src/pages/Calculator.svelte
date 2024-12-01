@@ -22,7 +22,7 @@
     try {
       result = eval(entry);
       if (result == Infinity) {
-        result = "😳 the resulte is too large";
+        result = "😳 the result is too large";
       }
     } catch {
       entry = entry
