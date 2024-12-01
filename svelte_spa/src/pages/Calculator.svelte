@@ -3,8 +3,10 @@
 
   let result: number;
   let entry = "";
-  let authorized = Array.from(range(10)).map((x) => x.toString());
-  authorized = [...authorized, "+", "-", "/", "*", " ", "(", ")"];
+  let authorizeds = Array.from(range(10)).map((x) => x.toString());
+  let entryInput: HTMLInputElement;
+
+  authorizeds.push("+", "-", "/", "*", " ", "(", ")");
 
   function pushEntry(value: string | number) {
     entry += String(value);
@@ -23,23 +25,38 @@
   $: {
     try {
       result = eval(entry);
-    } catch {} // ignore when eval throws exception
+    } catch {
+      entry = entry
+        .split("")
+        .filter((x) => authorizeds.includes(x))
+        .join("");
+    } // Only authorizeds values are allowed
+  }
+
+  $: {
+    if (!!entryInput) {
+      if (entry.length > 0) {
+        entryInput.style.background = "#efdcc2";
+      } else {
+        entryInput.style.background = "#fff";
+      }
+    }
   }
 </script>
 
 <main>
   <section>
     <h1 style="text-align: center; color:white">Simple calculator</h1>
-  </section>
+  <section></section>
   <section class="cadre">
     <section class="header">
       <div class="screen">
-        <input bind:value={entry} type="text" />
+        <input bind:this={entryInput} bind:value={entry} type="text" />
       </div>
     </section>
 
     <section class="response">
-      <input type="text" bind:value={result} />
+      <input disabled type="text" bind:value={result} />
     </section>
 
     <section class="key-tab">
