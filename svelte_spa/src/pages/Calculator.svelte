@@ -1,7 +1,7 @@
 <script lang="ts">
   import { range } from "../utils";
 
-  let result: number;
+  let result: number | string;
   let entry = "";
   let authorizeds = Array.from(range(10)).map((x) => x.toString());
   let entryInput: HTMLInputElement;
@@ -21,6 +21,9 @@
   $: {
     try {
       result = eval(entry);
+      if (result == Infinity) {
+        result = "😳 the resulte is too large";
+      }
     } catch {
       entry = entry
         .split("")
@@ -42,54 +45,66 @@
 
 <main>
   <h1 style="text-align: center; color:white">Simple calculator</h1>
-  <section></section>
-  <section class="cadre">
-    <section class="header">
-      <div class="screen">
-        <input bind:this={entryInput} bind:value={entry} type="text" />
-      </div>
-    </section>
+  <section class="hero">
+    <div class="hero-body">
+      <section class="cadre">
+        <section class="header">
+          <div class="screen">
+            <input bind:this={entryInput} bind:value={entry} type="text" />
+          </div>
+        </section>
 
-    <section class="response">
-      <input disabled type="text" bind:value={result} />
-    </section>
+        <section class="response">
+          <input disabled type="text" bind:value={result} />
+        </section>
 
-    <section class="key-tab">
-      <div class="keyboard">
-        {#each range(1, 10) as key}
-          <button on:click={() => pushEntry(key)}>{key}</button>
-        {/each}
-        <button on:click={() => pushEntry(0)}>0</button>
-        <button on:click={() => pushEntry("+")}>+</button>
-        <button on:click={() => pushEntry("-")}> - </button>
-        <button on:click={() => pushEntry("*")}> * </button>
-        <button on:click={() => pushEntry("/")}> / </button>
-        <button on:click={popEntry}>Del</button>
-      </div>
-    </section>
+        <section class="key-tab">
+          <div class="keyboard">
+            {#each range(1, 10) as key}
+              <button class="button" on:click={() => pushEntry(key)}
+                >{key}</button
+              >
+            {/each}
+            <button class="button" on:click={() => pushEntry(0)}>0</button>
+            <button class="button signes" on:click={() => pushEntry("+")}
+              >+</button
+            >
+            <button class="button signes" on:click={() => pushEntry("-")}>
+              -
+            </button>
+            <button class="button signes" on:click={() => pushEntry("*")}>
+              *
+            </button>
+            <button class="button signes" on:click={() => pushEntry("/")}>
+              /
+            </button>
+            <button class="button signes" on:click={popEntry}>Del</button>
+          </div>
+        </section>
+      </section>
+    </div>
   </section>
 </main>
 
 <style lang="scss">
-  main {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding-bottom: 50px;
-    padding-top: 50px;
-    padding-left: 50px;
-    padding-right: 50px;
-    gap: 10px;
+  $input-height: 50px;
+  $cadre-width: 500px;
+
+  @mixin paddingX($value: 10px) {
+    padding-left: $value;
+    padding-right: $value;
   }
+  @mixin paddingY($value: 10px) {
+    padding-top: $value;
+    padding-bottom: $value;
+  }
+
   .cadre {
     display: flex;
     flex-direction: column;
     gap: 100px;
     background-color: #864ea0;
-    width: 500px;
+    width: $cadre-width;
     max-height: 700px;
     padding-top: 50px;
     align-items: center;
@@ -100,7 +115,7 @@
       width: 90%;
       .screen {
         input {
-          height: 50px;
+          height: $input-height;
           width: 100%;
           font-size: 30px;
         }
@@ -110,8 +125,12 @@
 
   .key-tab {
     display: flex;
+    width: calc($cadre-width - 90px);
     height: 500px;
-    padding: 30px;
+    // align-items: center;
+    // justify-content: center;
+    @include paddingX(130px);
+    @include paddingY(30px);
   }
 
   .response {
@@ -119,7 +138,7 @@
     align-self: flex-end;
     margin-right: 25px;
     margin-top: -80px;
-    height: 30px;
+    height: $input-height;
     input {
       height: 100%;
       font-size: medium;
@@ -127,18 +146,19 @@
       background-color: #fff;
       color: black;
       font-weight: 700;
+      text-align: center;
     }
   }
   .keyboard {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    width: 100%;
     gap: 10px;
-    margin-left: 5px;
     button {
       width: 130px;
-      height: 50px;
-      font-size: large;
+      height: $input-height;
+      font-size: larger;
     }
   }
 
@@ -147,24 +167,52 @@
     border: 0;
   }
 
+  @media only screen and (max-width: 950px) and (max-height: 610px) {
+    $new-card-width: calc($cadre-width / 1.3);
+    .hero {
+      height: 100% !important;
+    }
+    .hero-body {
+      height: 100%;
+    }
+    .cadre {
+      width: calc($new-card-width) !important;
+      height: 500px !important;
+    }
+    .button {
+      width: calc($input-height * 2) !important;
+      height: $input-height / 1.1 !important;
+    }
+    .key-tab {
+      margin-left: calc($new-card-width / 4);
+    }
+  }
   @media only screen and (max-width: 700px) {
-    .keyboard {
-      margin-left: 30px;
-      button {
-        width: 80px;
+    .cadre {
+      width: calc($cadre-width / 1.4) !important;
+      height: calc($input-height * 10);
+      .response {
+        height: calc($input-height/1.2);
       }
     }
-
-    .cadre {
-      height: 90%;
-      width: 360px;
+    .key-tab {
+      width: calc($cadre-width/1.5);
+      margin-left: 20px;
+      margin-top: -80px;
+    }
+    .keyboard {
+      // margin-left: 30px;
+      button {
+        width: 100px;
+        font-weight: 900;
+        font-size: large;
+      }
+      .signes {
+        font-size: x-large;
+      }
+    }
+    .hero {
+      overflow-x: hidden;
     }
   }
-
-  /*   @media only screen and (min-width: 850px) {
-    .cadre {
-      //   height: 90%;
-    }
-  }
- */
 </style>
