@@ -4,10 +4,19 @@
 
   let result: number | string;
   let entry = "";
-  let authorizeds = Array.from(range(10)).map((x) => x.toString());
+  let authorizeds = [
+    ...Array.from(range(10)).map((x) => x.toString()),
+    "+",
+    "-",
+    "/",
+    "%",
+    "*",
+    " ",
+    "(",
+    ")",
+    ".",
+  ];
   let entryInput: HTMLInputElement;
-
-  authorizeds.push("+", "-", "/", "%", "*", " ", "(", ")");
 
   function pushEntry(value: string | number) {
     entry += String(value);
@@ -49,11 +58,9 @@
 
     //EventHandler when a keyboard's key is pressed
     window.onkeyup = (event) => {
-
       //The action inside the block will run only
       //when the input is unfocused
       if (!isEntryFocused) {
-        
         //Append the input with the pressed key
         pushEntry(event.key);
 
