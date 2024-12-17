@@ -32,7 +32,7 @@ const routes: Route[] = [
   {
     name: "Convertor",
     href: "/convertor",
-    component: import("../pages/Convertor.svelte"),
+    component: import("../pages/Convertor/Index.svelte"),
     params: {},
   },
 ];
