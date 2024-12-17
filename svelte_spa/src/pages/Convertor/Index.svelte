@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { int, list, print_, range } from "../utils";
-  import to_base from "./bases/to_base";
+  import { int, list, print_, range } from "../../utils";
+  import to_base from "./utils/to_base";
 
   let numberEntry: number = 0;
   let base: number = 2;
