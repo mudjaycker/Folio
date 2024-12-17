@@ -1,6 +1,12 @@
 export const list = Array.from;
 export const print_ = console.log;
-
+export const int = (num: string | number) => {
+  if (!num) {
+    return 0;
+  } else {
+    return parseInt(`${Number(num)}`);
+  }
+};
 export function* range(
   begin: number,
   end: number | null = null,
