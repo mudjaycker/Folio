@@ -85,7 +85,7 @@
   }
 
   @mixin dimension($h, $w) {
-    height: calc($h);
+    height: $h;
     width: calc($w);
   }
 
@@ -106,8 +106,8 @@
     border-radius: 10px;
 
     .input {
-      @include dimension($height / 7, $width - 100px);
-      margin-top: calc($height / 8);
+      @include dimension(calc($height / 7), $width - 100px);
+      margin-top: calc(calc($height / 8));
       font-size: 30px;
       align-self: normal;
     }
@@ -117,19 +117,20 @@
       top: calc($height / 3);
       left: calc($width / 15);
       height: calc($height / 20);
-      @include dimension($height / 20, $width / 20);
+      @include dimension(calc($height / 20), calc($width / 20));
       font-size: 20px;
     }
 
     .result {
       background-color: #4f4949;
-      @include dimension($height / 7, $width - 100px);
+      @include dimension(calc($height / 7), $width - 100px);
       position: absolute;
       bottom: calc($height / 8);
       font-size: 30px;
       color: #e6e0e0;
       text-align: center;
       text-transform: lowercase;
+      word-break: break-all;
     }
   }
 </style>

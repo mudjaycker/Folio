@@ -6,7 +6,8 @@
   const transition2 = { delay: 200, x: 100, y: 0 };
 </script>
 
-<main transition:fly={transition1}>
+<!-- <main transition:fly={transition1}> -->
+<main>
   <section class="hero">
     <section class="hero-body">
       <ul>

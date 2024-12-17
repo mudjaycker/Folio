@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { range } from "../utils";
+  import { print_, range } from "../utils";
 
   let result: number | string;
   let entry = "";
@@ -22,8 +22,9 @@
     entry += String(value);
   }
 
+  const entryValue = () => entryInput.value;
   function popEntry() {
-    let entryList = entry.split("");
+    let entryList = entryValue().split("");
     entryList.pop();
     entry = entryList.join("");
   }
@@ -32,7 +33,7 @@
     try {
       result = eval(entry);
       if (result == Infinity) {
-        result = "😳 the result is too large";
+        result = "😳 Infinity";
       }
     } catch {
       entry = entry
@@ -51,13 +52,12 @@
       }
     }
   }
-
   onMount(() => {
     entryInput.focus();
     let isEntryFocused = true;
 
     //EventHandler when a keyboard's key is pressed
-    window.onkeyup = (event) => {
+    window.onkeydown = (event) => {
       //The action inside the block will run only
       //when the input is unfocused
       if (!isEntryFocused) {
@@ -68,6 +68,9 @@
         if (event.key == "ArrowLeft" || event.key == "ArrowRight") {
           entryInput.focus();
         }
+
+        if (event.code == "Backspace")
+          if (entryInput && entryInput.value.length > 0) popEntry();
       }
     };
 
@@ -194,7 +197,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
-    gap: 10px;
+    gap: 10x;
     button {
       width: 130px;
       height: $input-height;

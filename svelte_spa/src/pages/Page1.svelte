@@ -1,18 +1,27 @@
 <script lang="ts">
   import { scale } from "svelte/transition";
-  import photo from "../assets/Karos-.jpg";
-  import clockImage from "../assets/clock.svg";
-  import calculatorImage from "../assets/calculator.svg";
+  // import photo from "../assets/Karos-.jpg";
+  // import clockImage from "../assets/clock.svg";
+  // import calculatorImage from "../assets/calculator.svg";
 
   let realisations = [
-    { title: "simple calculator", img: calculatorImage, href: "/calculator" },
-    { title: "date-picker", img: photo, href: "page-1" },
-    { title: "analogic clock", img: clockImage, href: "/clock" },
-    { title: "bases convertor", img: photo, href: "/convertor" },
+    {
+      title: "simple calculator",
+      img: "/images/calculator.svg",
+      href: "/calculator",
+    },
+    { title: "date-picker", img: "/images/karos.png", href: "page-1" },
+    { title: "analogic clock", img: "/images/clock.svg", href: "/clock" },
+    {
+      title: "bases convertor",
+      img: "/images/base_convertor.svg",
+      href: "/convertor",
+    },
   ];
 </script>
 
-<main transition:scale={{ delay: 500, duration: 1000 }}>
+<!-- <main transition:scale={{ delay: 500, duration: 1000 }}> -->
+<main>
   <section class="hero">
     <section class="title">
       <h1>
@@ -33,6 +42,7 @@
                 height="350"
                 alt=""
                 src={real.img}
+                loading="lazy"
               />
             </div>
             <div class="card-footer">
