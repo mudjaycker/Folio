@@ -57,24 +57,22 @@
   });
 </script>
 
-<main>
-  <div class="container">
-    <section class="content">
-      <input
-        bind:this={entryInput}
-        bind:value={numberEntry}
-        type="text"
-        class="input"
-      />
-      <input
-        bind:this={baseInput}
-        bind:value={base}
-        type="number"
-        class="input-base"
-      />
-      <div class="result">{result}</div>
-    </section>
-  </div>
+<main class="container">
+  <section class="content">
+    <input
+      bind:this={entryInput}
+      bind:value={numberEntry}
+      type="text"
+      class="input"
+    />
+    <input
+      bind:this={baseInput}
+      bind:value={base}
+      type="number"
+      class="input-base"
+    />
+    <div class="result">{result}</div>
+  </section>
 </main>
 
 <style lang="scss">
@@ -92,10 +90,13 @@
   $width: 800px;
   $height: 500px;
 
+  :global(body) {
+    overflow-y: hidden !important;
+  }
   .container {
     @include flexi;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
   }
   .content {
     @include flexi;
@@ -131,6 +132,32 @@
       text-align: center;
       text-transform: lowercase;
       word-break: break-all;
+    }
+  }
+
+  @media only screen and (max-width: 1034px) {
+    .container {
+      width: 100%;
+      overflow-y: hidden !important;
+    }
+    .content {
+      width: 50%;
+      height: 50%;
+
+      :nth-child(1),
+      :last-child {
+        width: 95%;
+        height: calc($height / 16);
+        font-size: x-large;
+      }
+      .result {
+        overflow-x: auto;
+      }
+      .input-base {
+        top: calc($height / 4);
+        left: calc($width / 200);
+        height: calc($height / 30);
+      }
     }
   }
 </style>
