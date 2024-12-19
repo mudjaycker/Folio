@@ -10,3 +10,4 @@ const welcome = {
 type DEFAULT_PAGE = typeof welcome;
 
 export let current_page = writable<DEFAULT_PAGE>(welcome);
+export let entryStore = writable<string>();

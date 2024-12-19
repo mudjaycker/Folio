@@ -1,12 +1,17 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { int, list, print_, range } from "../../utils";
+  import convert from "./utils/convert";
   import to_base from "./utils/to_base";
+  import { letters } from "./utils/consts";
+  import { entryStore } from "../../store";
 
-  let numberEntry: number = 0;
-  let base: number = 2;
+  let numberEntry: string = "";
   let entryInput: HTMLInputElement;
-  let baseInput: HTMLInputElement;
+  let baseFromInput: HTMLInputElement;
+  let from_: number = 10;
+  let baseToInput: HTMLInputElement;
+  let to: number = 2;
 
   const numWith = (num: number | string, chars: string[]) => {
     let res = String(num)
@@ -14,21 +19,31 @@
       .filter((x) => chars.includes(x))
       .join("");
 
-    return int(res);
+    return res;
   };
 
   let result = "";
 
   $: {
-    if (!base || base == 1) {
+    if (!from_ || from_ == 1) {
       result = "0";
-    } else if (int(base) >= 36) {
-      base = 36;
-      result = to_base(numberEntry, 36);
-    } else if (base == 10) {
-      result = numberEntry ? String(numberEntry) : "0";
+    } else if (!to || to == 1) {
+      result = "0";
     } else {
-      result = to_base(numberEntry, base);
+      try {
+        result = convert(numberEntry, from_, to);
+        $entryStore = numberEntry;
+      } catch (e) {
+        console.error(e);
+        numberEntry = $entryStore;
+      }
+    }
+
+    if (from_ >= 36) {
+      from_ = 36;
+    }
+    if (to >= 36) {
+      to = 36;
     }
   }
 
@@ -41,7 +56,10 @@
     }
   }
 
-  let authorizeds = [...list(range(10)), ""].map((x) => String(x));
+  const lowLetters = letters.map((l) => l.toLowerCase());
+  let authorizeds = [...list(range(10)), "", ...letters, ...lowLetters].map(
+    (x) => String(x)
+  );
 
   const normalizeInput = (entry: HTMLInputElement) => {
     entry.oninput = (ev) => {
@@ -53,7 +71,8 @@
   onMount(() => {
     if (entryInput) normalizeInput(entryInput);
 
-    if (baseInput) normalizeInput(baseInput);
+    if (baseFromInput) normalizeInput(baseFromInput);
+    if (baseFromInput) normalizeInput(baseToInput);
   });
 </script>
 
@@ -65,12 +84,22 @@
       type="text"
       class="input"
     />
-    <input
-      bind:this={baseInput}
-      bind:value={base}
-      type="number"
-      class="input-base"
-    />
+    <div class="bases">
+      <span>From base</span>
+      <input
+        bind:this={baseFromInput}
+        bind:value={from_}
+        type="number"
+        class="input-base"
+      />
+      <span>To base</span>
+      <input
+        bind:this={baseToInput}
+        bind:value={to}
+        type="number"
+        class="input-base"
+      />
+    </div>
     <div class="result">{result}</div>
   </section>
 </main>
@@ -90,10 +119,11 @@
   $width: 800px;
   $height: 500px;
 
-  :global(body) {
-    overflow-y: hidden !important;
-  }
+  // :global(body) {
+  // overflow-y: hidden !important;
+  // }
   .container {
+    position: absolute;
     @include flexi;
     width: 100%;
     height: 100%;
@@ -113,13 +143,19 @@
       align-self: normal;
     }
 
-    .input-base {
+    .bases {
       position: absolute;
       top: calc($height / 3);
       left: calc($width / 15);
       height: calc($height / 20);
-      @include dimension(calc($height / 20), calc($width / 20));
-      font-size: 20px;
+      .input-base {
+        @include dimension(calc($height / 20), calc($width / 20));
+        font-size: 20px;
+      }
+      span {
+        font-size: 15px;
+        color: white;
+      }
     }
 
     .result {
@@ -138,11 +174,13 @@
   @media only screen and (max-width: 1034px) {
     .container {
       width: 100%;
-      overflow-y: hidden !important;
+      // height: 100%;
+      // overflow-y: hidden !important;
+      @include flexi;
     }
     .content {
-      width: 50%;
-      height: 50%;
+      width: 90%;
+      height: 70%;
 
       :nth-child(1),
       :last-child {
@@ -153,10 +191,12 @@
       .result {
         overflow-x: auto;
       }
-      .input-base {
+      .bases {
         top: calc($height / 4);
         left: calc($width / 200);
-        height: calc($height / 30);
+        .input-base {
+          height: calc($height / 30);
+        }
       }
     }
   }
