@@ -12,9 +12,9 @@ type Route = typeof WELCOME_ROUTE;
 const routes: Route[] = [
   WELCOME_ROUTE,
   {
-    name: "Page 1",
-    href: "/page-1",
-    component: import("../pages/Page1.svelte"),
+    name: "Presentation",
+    href: "/presentation",
+    component: import("../pages/Presentation.svelte"),
     params: {},
   },
   {
