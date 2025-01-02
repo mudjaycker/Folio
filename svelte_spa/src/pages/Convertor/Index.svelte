@@ -2,18 +2,18 @@
   import { onMount } from "svelte";
   import { int, list, print_, range } from "../../utils";
   import convert from "./utils/convert";
-  import to_base from "./utils/to_base";
+  // import to_base from "./utils/to_base";
   import { letters } from "./utils/consts";
   import { entryStore } from "../../store";
 
   let numberEntry: string = "";
   let entryInput: HTMLInputElement;
   let baseFromInput: HTMLInputElement;
-  let from_: number = 10;
   let baseToInput: HTMLInputElement;
-  let to: number = 2;
+  let from_ = 10;
+  let to = 2;
 
-  const numWith = (num: number | string, chars: string[]) => {
+  const filterNumIn = (num: number | string, chars: string[]) => {
     let res = String(num)
       .split("")
       .filter((x) => chars.includes(x))
@@ -26,9 +26,9 @@
 
   $: {
     if (!from_ || from_ == 1) {
-      result = "0";
+      result = "";
     } else if (!to || to == 1) {
-      result = "0";
+      result = "";
     } else {
       try {
         result = convert(numberEntry, from_, to);
@@ -39,12 +39,9 @@
       }
     }
 
-    if (from_ >= 36) {
-      from_ = 36;
-    }
-    if (to >= 36) {
-      to = 36;
-    }
+    const fixMaxBase = (num: number) => (num >= 36 ? 36 : num);
+    from_ = fixMaxBase(from_);
+    to = fixMaxBase(to);
   }
 
   $: {
@@ -57,20 +54,18 @@
   }
 
   const lowLetters = letters.map((l) => l.toLowerCase());
-  let authorizeds = [...list(range(10)), "", ...letters, ...lowLetters].map(
-    (x) => String(x)
-  );
+  const strNumbers = list(range(10)).map((n) => String(n));
+  let authorizeds = [...strNumbers, "", ...letters, ...lowLetters];
 
   const normalizeInput = (entry: HTMLInputElement) => {
-    entry.oninput = (ev) => {
-      //@ts-ignore
-      ev.target.value = numWith(ev.target.value, authorizeds);
+    entry.oninput = (ev: Event) => {
+      const target = ev.target as HTMLInputElement;
+      target.value = filterNumIn(target.value, authorizeds);
     };
   };
 
   onMount(() => {
     if (entryInput) normalizeInput(entryInput);
-
     if (baseFromInput) normalizeInput(baseFromInput);
     if (baseFromInput) normalizeInput(baseToInput);
   });
