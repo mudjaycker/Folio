@@ -17,7 +17,7 @@
         <li id="text2">We going to make a tour (if you want obviously 😉)</li>
         <li id="text3">You just have to click to the button below 👇🏿</li>
       </ul>
-      <button class="button" on:click={() => redirect("/page-1")}
+      <button class="button" on:click={() => redirect("/presentation")}
         >Start a tour</button
       >
     </section>
@@ -73,6 +73,10 @@
     animation: fade-in 2s ease-in-out;
   }
 
+  button{
+    margin-top: 200px;
+  }
+
   @media only screen and (max-width: 700px) {
     .hero {
       height: 100vh;
@@ -80,6 +84,7 @@
     .hero-body {
       button {
         // width: 200px;
+        margin-top: 50px;
         margin-bottom: 50px;
       }
 
