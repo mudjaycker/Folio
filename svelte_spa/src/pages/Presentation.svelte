@@ -10,7 +10,7 @@
       img: "/images/calculator.svg",
       href: "/calculator",
     },
-    { title: "date-picker", img: "/images/karos.png", href: "page-1" },
+    // { title: "date-picker", img: "/images/karos.png", href: "/" },
     { title: "analogic clock", img: "/images/clock.svg", href: "/clock" },
     {
       title: "bases convertor",
