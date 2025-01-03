@@ -6,21 +6,18 @@
   import { letters } from "./utils/consts";
   import { entryStore } from "../../store";
 
-  let numberEntry: string = "";
-  let entryInput: HTMLInputElement;
-  let baseFromInput: HTMLInputElement;
-  let baseToInput: HTMLInputElement;
-  let from_ = 10;
-  let to = 2;
+  let numberEntry: string = "",
+    entryInput: HTMLInputElement,
+    baseFromInput: HTMLInputElement,
+    baseToInput: HTMLInputElement,
+    from_ = 10,
+    to = 2;
 
-  const filterNumIn = (num: number | string, chars: string[]) => {
-    let res = String(num)
+  const filterNumIn = (num: number | string, chars: string[]) =>
+    String(num)
       .split("")
       .filter((x) => chars.includes(x))
       .join("");
-
-    return res;
-  };
 
   let result = "";
 
@@ -32,10 +29,10 @@
     } else {
       try {
         result = convert(numberEntry, from_, to);
-        $entryStore = numberEntry;
+        $entryStore = numberEntry; //Store the entry to make it available globally
       } catch (e) {
         console.error(e);
-        numberEntry = $entryStore;
+        numberEntry = $entryStore; //Get the entry last sta
       }
     }
 
@@ -55,7 +52,7 @@
 
   const lowLetters = letters.map((l) => l.toLowerCase());
   const strNumbers = list(range(10)).map((n) => String(n));
-  let authorizeds = [...strNumbers, "", ...letters, ...lowLetters];
+  const authorizeds = [...strNumbers, "", ...letters, ...lowLetters];
 
   const normalizeInput = (entry: HTMLInputElement) => {
     entry.oninput = (ev: Event) => {
