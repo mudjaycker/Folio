@@ -35,6 +35,12 @@ const routes: Route[] = [
     component: import("../pages/Convertor/Index.svelte"),
     params: {},
   },
+  {
+    name: "Ascii",
+    href: "/ascii",
+    component: import("../pages/Ascii.svelte"),
+    params: {},
+  },
 ];
 
 for (let route of routes) {
