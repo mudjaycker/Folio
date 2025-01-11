@@ -6,25 +6,19 @@
   import { letters } from "./utils/consts";
   import { entryStore } from "../../store";
 
+  /* -------------------------------- Variables ------------------------------- */
   let numberEntry: string = "",
     entryInput: HTMLInputElement,
     baseFromInput: HTMLInputElement,
     baseToInput: HTMLInputElement,
     from_ = 10,
-    to = 2;
+    to = 2,
+    result = "";
+  /* ----------------------------------- End ---------------------------------- */
 
-  const filterNumIn = (num: number | string, chars: string[]) =>
-    String(num)
-      .split("")
-      .filter((x) => chars.includes(x))
-      .join("");
-
-  let result = "";
-
+  /* -------------------------------- Comouteds ------------------------------- */
   $: {
-    if (!from_ || from_ == 1) {
-      result = "";
-    } else if (!to || to == 1) {
+    if (!from_ || from_ == 1 || !to || to == 1) {
       result = "";
     } else {
       try {
@@ -42,14 +36,16 @@
   }
 
   $: {
-    let lastChar = result.split("")[result.length - 1];
+    let lastChar = result[result.length - 1];
     if (lastChar == "0") {
       let r = result.split("");
       r.pop();
       result = r.join("");
     }
   }
+  /* ----------------------------------- End ---------------------------------- */
 
+  /* --------------------------------- Methods -------------------------------- */
   const lowLetters = letters.map((l) => l.toLowerCase());
   const strNumbers = list(range(10)).map((n) => String(n));
   const authorizeds = [...strNumbers, "", ...letters, ...lowLetters];
@@ -60,12 +56,18 @@
       target.value = filterNumIn(target.value, authorizeds);
     };
   };
+  const filterNumIn = (num: number | string, chars: string[]) =>
+    (typeof num == "string" ? num : String(num))
+      .split("")
+      .filter((char) => chars.includes(char))
+      .join("");
 
   onMount(() => {
     if (entryInput) normalizeInput(entryInput);
     if (baseFromInput) normalizeInput(baseFromInput);
     if (baseFromInput) normalizeInput(baseToInput);
   });
+  /* ----------------------------------- End ---------------------------------- */
 </script>
 
 <main class="container">
