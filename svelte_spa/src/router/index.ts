@@ -1,16 +1,12 @@
-import router from "page";
-import { current_page } from "../store";
+import { RoutesMaker } from "./routesMaker";
 
-const WELCOME_ROUTE = {
-  name: "Welcome",
-  href: "/",
-  component: import("../pages/Welcome.svelte"),
-  params: {},
-};
-type Route = typeof WELCOME_ROUTE;
-
-const routes: Route[] = [
-  WELCOME_ROUTE,
+const router = new RoutesMaker([
+  {
+    name: "Welcome",
+    href: "/",
+    component: import("../pages/Welcome.svelte"),
+    params: {},
+  },
   {
     name: "Presentation",
     href: "/presentation",
@@ -41,17 +37,6 @@ const routes: Route[] = [
     component: import("../pages/Ascii.svelte"),
     params: {},
   },
-];
+]);
 
-for (let route of routes) {
-  router(route.href, async () =>
-    current_page.set({
-      name: route.name,
-      href: route.href,
-      component: (await route.component)?.default,
-      params: route.params,
-    })
-  );
-}
-
-router.start();
+router.makeRoutes();
