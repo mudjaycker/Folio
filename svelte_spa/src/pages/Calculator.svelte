@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { print_, range } from "../utils";
+  import { filterNumIn, print_, range } from "../utils";
 
   let result: number | string;
   let entry = "";
@@ -36,10 +36,7 @@
         result = "😳 Infinity";
       }
     } catch {
-      entry = entry
-        .split("")
-        .filter((x) => authorizeds.includes(x))
-        .join("");
+      entry = filterNumIn(entry, authorizeds)
     } // Only authorizeds values are allowed
   }
 

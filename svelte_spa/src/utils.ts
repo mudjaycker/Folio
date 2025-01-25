@@ -33,3 +33,10 @@ export function* loop<T>(iterable: Iterable<T>): Generator<T> {
     index++;
   }
 }
+
+export const filterNumIn = (num: string | number, chars: string[]) => {
+  return String(num)
+    .split("")
+    .filter((x) => chars.includes(x))
+    .join("");
+};

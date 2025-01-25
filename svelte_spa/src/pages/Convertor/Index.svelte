@@ -1,7 +1,8 @@
 <script lang="ts">
   import "../../convertor.scss";
+
   import { onMount } from "svelte";
-  import { int, list, print_, range } from "../../utils";
+  import { filterNumIn, int, list, print_, range } from "../../utils";
   import convert from "./utils/convert";
   // import to_base from "./utils/to_base";
   import { letters } from "./utils/consts";
@@ -44,12 +45,12 @@
       result = r.join("");
     }
   }
+  
   /* ----------------------------------- End ---------------------------------- */
 
   /* --------------------------------- Methods -------------------------------- */
-  const lowLetters = letters.map((l) => l.toLowerCase());
-  const strNumbers = list(range(10)).map((n) => String(n));
-  const authorizeds = [...strNumbers, "", ...letters, ...lowLetters];
+/*   const strNumbers = list(range(10)).map((n) => String(n));
+  const authorizeds = [...strNumbers, "", ...letters];
 
   const normalizeInput = (entry: HTMLInputElement) => {
     entry.oninput = (ev: Event) => {
@@ -57,17 +58,13 @@
       target.value = filterNumIn(target.value, authorizeds);
     };
   };
-  const filterNumIn = (num: number | string, chars: string[]) =>
-    (typeof num == "string" ? num : String(num))
-      .split("")
-      .filter((char) => chars.includes(char))
-      .join("");
 
   onMount(() => {
-    if (entryInput) normalizeInput(entryInput);
-    if (baseFromInput) normalizeInput(baseFromInput);
-    if (baseFromInput) normalizeInput(baseToInput);
-  });
+    //normalize inputs, so that user can't put in unsupported characters by base choiced
+    [entryInput].forEach((e) => {
+      if (e) normalizeInput(e);
+    });
+  }); */
   /* ----------------------------------- End ---------------------------------- */
 </script>
 
