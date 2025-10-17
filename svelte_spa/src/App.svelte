@@ -13,16 +13,15 @@
 </svelte:head>
 <main>
   {#if pageName != "Welcome"}
-    <button on:click={goBack} class="back-btn">Back</button>
+    <button on:click={goBack} class="back-btn">👈🏿</button>
   {/if}
-  <svelte:component this={$current_page.component} />
+  <svelte:component this={$current_page.component as any} />
 </main>
 
 <style lang="scss">
     .back-btn {
-      margin-top: 50px;
+      margin-top: 20px;
       margin-left: 10px;
-      height: 50px;
-      width: 150px;
+      font-size: xx-large;
     }
 </style>
