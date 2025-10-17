@@ -1,0 +1,14 @@
+@mixin flex() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin paddingX($value: 10px) {
+    padding-left: $value;
+    padding-right: $value;
+}
+@mixin paddingY($value: 10px) {
+    padding-top: $value;
+    padding-bottom: $value;
+}
