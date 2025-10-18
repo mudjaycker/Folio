@@ -23,5 +23,6 @@
       margin-top: 20px;
       margin-left: 10px;
       font-size: xx-large;
+      border-radius: 10px;
     }
 </style>
