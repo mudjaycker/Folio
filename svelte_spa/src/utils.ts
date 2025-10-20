@@ -9,10 +9,10 @@ export const int = (num: string | number) => {
 };
 export function* range(
     begin: number,
-    end: number | null = null,
+    end: number | undefined = undefined,
     step: number = 1
 ): Generator<number> {
-    if (end == null) {
+    if (!end) {
         [end, begin] = [begin, 0];
     }
 
@@ -42,7 +42,7 @@ export const filterNumIn = (num: string | number, chars: string[]) => {
 };
 
 export function isNumeric(value: string) {
-    let numbers = list(range(0, 10)).map((i) => String(i)); // list from 0 to 9
+    const numbers = list(range(0, 10)).map((i) => String(i)); // list from 0 to 9
     for (let i of value) {
         if (!numbers.includes(i)) {
             return false;

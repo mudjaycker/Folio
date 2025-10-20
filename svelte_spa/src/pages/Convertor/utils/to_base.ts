@@ -1,4 +1,4 @@
-import { int, print_ } from "../../../utils";
+import { int } from "../../../utils";
 import NUM_MAP from "./consts";
 
 function to_base(_number: number | string, base: number | string = 2) {

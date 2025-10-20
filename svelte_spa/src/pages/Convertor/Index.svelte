@@ -1,11 +1,6 @@
 <script lang="ts">
   import "../../convertor.scss";
-
-  import { onMount } from "svelte";
-  import { filterNumIn, int, list, print_, range } from "../../utils";
   import convert from "./utils/convert";
-  // import to_base from "./utils/to_base";
-  import { letters } from "./utils/consts";
   import { entryStore } from "../../store";
 
   /* -------------------------------- Variables ------------------------------- */
@@ -27,7 +22,7 @@
         result = convert(numberEntry, from_, to);
         $entryStore = numberEntry; //Store the entry to make it available globally
       } catch (e) {
-        console.error(e);
+        console.log(e);
         numberEntry = $entryStore; //Get the entry last sta
       }
     }
@@ -48,24 +43,6 @@
   
   /* ----------------------------------- End ---------------------------------- */
 
-  /* --------------------------------- Methods -------------------------------- */
-/*   const strNumbers = list(range(10)).map((n) => String(n));
-  const authorizeds = [...strNumbers, "", ...letters];
-
-  const normalizeInput = (entry: HTMLInputElement) => {
-    entry.oninput = (ev: Event) => {
-      const target = ev.target as HTMLInputElement;
-      target.value = filterNumIn(target.value, authorizeds);
-    };
-  };
-
-  onMount(() => {
-    //normalize inputs, so that user can't put in unsupported characters by base choiced
-    [entryInput].forEach((e) => {
-      if (e) normalizeInput(e);
-    });
-  }); */
-  /* ----------------------------------- End ---------------------------------- */
 </script>
 
 <main class="container">

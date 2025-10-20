@@ -14,7 +14,7 @@ function from_base(number_: string, base: number = 2): number {
   number_.split("").filter((n) => {
     if (!intervals.includes(n.toUpperCase()))
       throw new RangeError(
-        `Input ${number_} is not in range ${intervals}`
+        `Input "${number_}" is not in range [${intervals}]`
       );
   });
 
