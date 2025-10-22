@@ -227,7 +227,7 @@
     @media only screen and (max-width: 600px) {
         .cadre {
             width: calc($cadre-width / 1.3);
-            @include vars.paddingY(10px);
+            @include vars.paddingY(100px);
             .header {
                 width: 90%;
             }
