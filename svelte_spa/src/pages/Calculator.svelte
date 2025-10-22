@@ -90,8 +90,6 @@
 </script>
 
 <main>
-    <h1 style="text-align: center; color:white">Simple calculator</h1>
-
     <section class="hero">
         <div class="hero-body">
             <section class="cadre">

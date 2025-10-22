@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { slide } from "svelte/transition";
+    import { cubicInOut } from "svelte/easing";
+    import { slide, fly } from "svelte/transition";
     // import photo from "../assets/Karos-.jpg";
     // import clockImage from "../assets/clock.svg";
     // import calculatorImage from "../assets/calculator.svg";
@@ -19,20 +20,31 @@
         },
     ];
 
-    const transition = { delay: 100, x: 10, y: -50 };
+    type axisType = "x" | "y";
+
+    const transition = { x: -10, y: -50, duration: 1500 };
+    const slideIn = {
+        axis: "y" as axisType,
+        duration: 2000,
+        easing: cubicInOut,
+    };
+    const slideOut = {
+        axis: "x" as axisType,
+        duration: 2000,
+        easing: cubicInOut,
+    };
 </script>
 
-<!-- <main transition:scale={{ delay: 500, duration: 1000 }}> -->
 <main>
     <section class="hero">
-        <section class="title">
+        <section class="title" transition:fly={transition}>
             <h1>
                 😎 <span
                     >Here are few examples of what I can do just for fun 👇🏿</span
                 >
             </h1>
         </section>
-        <section class="columns" transition:slide={transition}>
+        <section class="columns" in:slide={slideIn} out:slide={slideOut}>
             {#each realisations as real}
                 <div class="column">
                     <div class="card">

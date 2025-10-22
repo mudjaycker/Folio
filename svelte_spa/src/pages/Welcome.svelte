@@ -1,14 +1,11 @@
 <script lang="ts">
     import redirect from "page";
-    import { fly, scale } from "svelte/transition";
-
-    const transition1 = { delay: 100, x: -50, y: 50 };
 </script>
 
 <!-- <main transition:fly={transition1}> -->
 <main>
     <section class="hero">
-        <section class="hero-body" transition:fly={transition1}>
+        <section class="hero-body">
             <ul>
                 <li id="text1">
                     My name is Maryimana, and I wish you welcome to my website
@@ -33,20 +30,33 @@
     .hero-body {
         min-height: 70%;
         width: 50%;
-        margin-top: 5%;
+        // margin-top: 5%;
         @include vars.flex;
         flex-direction: column;
+
         ul {
             li {
                 font-size: xx-large;
                 font-weight: bold;
-                margin-top: 100px;
+                margin-top: 20px;
             }
+
             :nth-child(1) {
-                margin: 0%;
+                margin-top: 10%;
             }
         }
-        // background-color: aquamarine;
+    }
+    .button {
+        margin-top: 80px;
+        background-color: #71ce46;
+        color: white;
+        font-weight: bold;
+        font-size: large;
+
+        &:hover {
+            background-color: rgb(255, 123, 0);
+            // color: black;
+        }
     }
 
     @keyframes fade-in {
@@ -62,14 +72,12 @@
         }
     }
 
-    #text1 {
-        animation: fade-in 3s ease-in-out;
-    }
-    #text2 {
-        animation: fade-in 1s ease-in-out;
-    }
-    #text3 {
-        animation: fade-in 2s ease-in-out;
+    
+    @for $i from 1 through 3{
+        #text#{$i} {
+            animation: fade-in 2s ease-in-out;
+        }
+        
     }
 
     @media only screen and (max-width: 600px) {
@@ -84,9 +92,6 @@
             }
 
             ul {
-                :nth-child(1) {
-                    margin-top: 500px;
-                }
                 li {
                     font-size: larger;
                 }
