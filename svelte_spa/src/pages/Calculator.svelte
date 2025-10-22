@@ -56,8 +56,8 @@
         }
     }
     onMount(() => {
-        entryInput.focus();
-        let isEntryFocused = true;
+        // entryInput.focus();
+        let isEntryFocused = false;
 
         //EventHandler when a keyboard's key is pressed
         window.onkeydown = (event) => {
