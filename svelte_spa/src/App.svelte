@@ -8,10 +8,10 @@
         history.back();
     }
     
-    const telegramlink = "www.telegram.me/mudjaygram",
-        githublink = "www.github.com/maryimana",
-        whatsapplink = "web.whatsapp.com/0025772037069",
-        gmaillink = "maryimana983@gmail.com",
+    const telegramlink = "t.me/mudjaygram",
+        githublink = "www.github.com/mudjaycker",
+        whatsapplink = "wa.me/0025772037069",
+        // gmaillink = "maryimana983@gmail.com",
         linkedinlink = "www.linkedin.com/in/maryimana-butoyi-bba2aa21b/";
 
     const openLink = (link: string) => {
@@ -20,10 +20,10 @@
     };
 
     let infos = [
-        { name: "Github", link: githublink, detail: "maryimana" },
+        { name: "Github", link: githublink, detail: "mudjaycker" },
         { name: "Telegram", link: telegramlink, detail: "mudjaygram" },
         { name: "Whatsapp", link: whatsapplink, detail: "00257772037069" },
-        { name: "Gmail", link: gmaillink, detail: "maryimana983@gmail.com" },
+        // { name: "Gmail", link: gmaillink, detail: "maryimana983@gmail.com" },
         { name: "Linkedin", link: linkedinlink, detail: "maryimana" },
     ];
 </script>

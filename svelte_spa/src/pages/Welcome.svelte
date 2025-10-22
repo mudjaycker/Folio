@@ -1,6 +1,6 @@
 <script lang="ts">
     import redirect from "page";
-    import { fly, scale } from "svelte/transition";
+    // import { fly, scale } from "svelte/transition";
 
     const transition1 = { delay: 100, x: -50, y: 50 };
     const transition2 = { delay: 200, x: 100, y: 0 };
