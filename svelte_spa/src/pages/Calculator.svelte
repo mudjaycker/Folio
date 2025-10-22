@@ -119,17 +119,18 @@
                         >
                         <button
                             class="button signes"
-                            style="background-color: #ff7fca;"
+                            style="background-color: #887d83;"
                             on:click={() => pushEntry("-")}
                         >
                             ➖
                         </button>
                         <button
+                            id="mult-sign"
                             class="button signes"
                             style="background-color: #0aec43; font-weight:bolder"
                             on:click={() => pushEntry("*")}
                         >
-                            ⨉
+                        <span>➕</span>
                         </button>
                         <button
                             class="button signes"
@@ -143,7 +144,7 @@
                         <button
                             class="button signes"
                             on:click={popEntry}
-                            style="background-color: #ff7f90;">⟸</button
+                            style="background-color: #ff7f90;">&#129192;</button
                         >
                     </div>
                 </section>
@@ -160,6 +161,12 @@
 
     .signes {
         @include vars.flex;
+    }
+
+    #mult-sign {
+        :first-child {
+            transform: rotate(45deg);
+        }
     }
 
     .cadre {
