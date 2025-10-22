@@ -170,13 +170,13 @@
                                 style="background-color: #5709be; color: white;"
                                 >{p}</button
                             >
-                            {/each}
-                            <button
-                                class="button"
-                                on:click={reset}
-                                style="background-color: #d86bd8; color: white;"
-                                >AC</button
-                            >
+                        {/each}
+                        <button
+                            class="button"
+                            on:click={reset}
+                            style="background-color: #d86bd8; color: white;"
+                            >AC</button
+                        >
                     </div>
                 </section>
             </section>
@@ -226,7 +226,7 @@
         @include vars.flex;
         flex-direction: column;
         @include vars.paddingX(-20px);
-        @include vars.paddingY(30px);
+        @include vars.paddingY(20px);
     }
 
     .response {
@@ -261,13 +261,12 @@
     @media only screen and (max-width: 600px) {
         .cadre {
             width: calc($cadre-width / 1.3);
-            padding: 0;
             .header {
                 width: 90%;
             }
         }
         .button {
-            width: calc($input-height / .7) !important;
+            width: calc($input-height / 0.7) !important;
         }
     }
 </style>
