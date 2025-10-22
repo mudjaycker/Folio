@@ -6,7 +6,7 @@ const welcome = {
   name: "Welcome",
   href: "/",
   component: Welcome,
-  params: {},
+  isStaticImport: true,
 };
 type DEFAULT_PAGE = typeof welcome;
 

@@ -1,41 +1,42 @@
 import { RoutesMaker } from "./routesMaker";
+import Welcome from "../pages/Welcome.svelte";
 
 const router = new RoutesMaker([
   {
     name: "Welcome",
     href: "/",
-    component: import("../pages/Welcome.svelte"),
-    params: {},
+    component: Welcome,
+    isStaticImport: true,
   },
   {
     name: "Presentation",
     href: "/presentation",
     component: import("../pages/Presentation.svelte"),
-    params: {},
+    isStaticImport: false,
   },
   {
     name: "Clock",
     href: "/clock",
     component: import("../pages/Clock.svelte"),
-    params: {},
+    isStaticImport: false,
   },
   {
     name: "Calculator",
     href: "/calculator",
     component: import("../pages/Calculator.svelte"),
-    params: {},
+    isStaticImport: false,
   },
   {
     name: "Convertor",
     href: "/convertor",
     component: import("../pages/Convertor/Index.svelte"),
-    params: {},
+    isStaticImport: false,
   },
   {
     name: "Ascii",
     href: "/ascii",
     component: import("../pages/Ascii.svelte"),
-    params: {},
+    isStaticImport: false,
   },
 ]);
 

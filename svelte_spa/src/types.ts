@@ -1,3 +1,5 @@
+import type Welcome from "./pages/Welcome.svelte";
+
 export interface Component {
     default: __sveltets_2_IsomorphicComponent<
       Record<string, never>,
@@ -5,9 +7,11 @@ export interface Component {
     >;
   }
 
+  type WelcomeType = typeof Welcome
+
   export type Route = {
     name: string;
     href: string;
-    component: Promise<Component>;
-    params: {};
+    component: Promise<Component> | WelcomeType,
+    isStaticImport: boolean;
   };
