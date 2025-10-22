@@ -1,11 +1,18 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { filterNumIn, range } from "../utils";
+    import Copier from "../components/Copier.svelte";
 
     let result: number | string;
-    let entry = "";
+    let entry = "0";
     let entryInput: HTMLInputElement;
+    let resultInput: HTMLInputElement;
+
     $: entryLen = String(entry).length;
+    $: if (!entry) result = "0";
+    $: if (entry.substring(0, 1) === "0" && entry.length > 1) {
+        entry = entry.substring(1);
+    }
 
     let authorizeds = [
         ...Array.from(range(10)).map((x) => x.toString()),
@@ -32,7 +39,7 @@
         try {
             result = eval(entry);
             if (result == Infinity) {
-                result = "😳 Infinity";
+                result = "😳 wow Infinity";
             }
         } catch {
             entry = filterNumIn(entry, authorizeds);
@@ -98,7 +105,14 @@
                             />
                         </div>
                         <section class="response">
-                            <input disabled type="text" bind:value={result} />
+                            <input
+                                bind:this={resultInput}
+                                type="text"
+                                bind:value={result}
+                            />
+                            {#if !!result}
+                                <Copier value={result} />
+                            {/if}
                         </section>
                     </section>
 
@@ -130,7 +144,7 @@
                             style="background-color: #0aec43; font-weight:bolder"
                             on:click={() => pushEntry("*")}
                         >
-                        <span>➕</span>
+                            <span>➕</span>
                         </button>
                         <button
                             class="button signes"
@@ -172,7 +186,7 @@
     .cadre {
         width: $cadre-width;
         border-radius: 10px;
-        @include vars.paddingY(10px);
+        @include vars.paddingY(50px);
         margin-top: 30px;
         margin-bottom: 30px;
         box-shadow: #683c7c inset 10px 10px 10px;
