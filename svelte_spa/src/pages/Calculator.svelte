@@ -144,7 +144,7 @@
                         <button
                             class="button signes"
                             on:click={popEntry}
-                            style="background-color: #ff7f90;">&#129192;</button
+                            style="background-color: #ff7f90;">Del</button
                         >
                     </div>
                 </section>
