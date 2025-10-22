@@ -270,7 +270,7 @@
         }
 
         .cadre-body {
-            @include vars.paddingY(20px);
+            @include vars.paddingY(10px);
         }
     }
 </style>
