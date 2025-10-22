@@ -268,5 +268,9 @@
         .button {
             width: calc($input-height / 0.7) !important;
         }
+
+        .cadre-body {
+            @include vars.paddingY(20px);
+        }
     }
 </style>
