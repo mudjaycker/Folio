@@ -228,6 +228,7 @@
         .cadre {
             width: calc($cadre-width / 1.3);
             @include vars.paddingY(100px);
+            background-color: #fff;
             .header {
                 width: 90%;
             }
