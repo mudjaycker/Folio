@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { scale } from "svelte/transition";
+    import { slide } from "svelte/transition";
     // import photo from "../assets/Karos-.jpg";
     // import clockImage from "../assets/clock.svg";
     // import calculatorImage from "../assets/calculator.svg";
@@ -18,6 +18,8 @@
             href: "/convertor",
         },
     ];
+
+    const transition = { delay: 100, x: 10, y: -50 };
 </script>
 
 <!-- <main transition:scale={{ delay: 500, duration: 1000 }}> -->
@@ -30,7 +32,7 @@
                 >
             </h1>
         </section>
-        <section class="columns">
+        <section class="columns" transition:slide={transition}>
             {#each realisations as real}
                 <div class="column">
                     <div class="card">
@@ -60,7 +62,6 @@
 
     .hero {
         flex-direction: column;
-        // gap: 10px;
     }
 
     .title {

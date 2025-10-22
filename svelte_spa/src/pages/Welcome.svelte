@@ -1,15 +1,14 @@
 <script lang="ts">
     import redirect from "page";
-    // import { fly, scale } from "svelte/transition";
+    import { fly, scale } from "svelte/transition";
 
     const transition1 = { delay: 100, x: -50, y: 50 };
-    const transition2 = { delay: 200, x: 100, y: 0 };
 </script>
 
 <!-- <main transition:fly={transition1}> -->
 <main>
     <section class="hero">
-        <section class="hero-body">
+        <section class="hero-body" transition:fly={transition1}>
             <ul>
                 <li id="text1">
                     My name is Maryimana, and I wish you welcome to my website
@@ -73,7 +72,7 @@
         animation: fade-in 2s ease-in-out;
     }
 
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 600px) {
         .hero {
             height: 100vh;
         }
@@ -87,6 +86,9 @@
             ul {
                 :nth-child(1) {
                     margin-top: 500px;
+                }
+                li {
+                    font-size: larger;
                 }
             }
         }
