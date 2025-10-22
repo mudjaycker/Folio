@@ -10,7 +10,7 @@
     
     const telegramlink = "t.me/mudjaygram",
         githublink = "www.github.com/mudjaycker",
-        whatsapplink = "wa.me/0025772037069",
+        whatsapplink = "wa.me/25772037069",
         // gmaillink = "maryimana983@gmail.com",
         linkedinlink = "www.linkedin.com/in/maryimana-butoyi-bba2aa21b/";
 
