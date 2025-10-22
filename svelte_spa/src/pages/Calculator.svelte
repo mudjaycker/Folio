@@ -143,7 +143,7 @@
                         <button
                             class="button signes"
                             on:click={popEntry}
-                            style="background-color: #ff7f90;">🢨</button
+                            style="background-color: #ff7f90;">⟸</button
                         >
                     </div>
                 </section>
