@@ -8,6 +8,10 @@
     let entryInput: HTMLInputElement;
     let resultInput: HTMLInputElement;
 
+    const reset = () => {
+        entry = "0";
+    };
+
     $: entryLen = String(entry).length;
     $: if (!entry) result = "0";
     $: if (entry.substring(0, 1) === "0" && entry.length > 1) {
@@ -108,7 +112,7 @@
                                 type="text"
                                 bind:value={result}
                             />
-                            {#if !!result}
+                            {#if result != "0"}
                                 <Copier value={result} />
                             {/if}
                         </section>
@@ -158,6 +162,21 @@
                             on:click={popEntry}
                             style="background-color: #ff7f90;">Del</button
                         >
+
+                        {#each ["(", ")"] as p}
+                            <button
+                                class="button"
+                                on:click={() => pushEntry(p)}
+                                style="background-color: #5709be; color: white;"
+                                >{p}</button
+                            >
+                            {/each}
+                            <button
+                                class="button"
+                                on:click={reset}
+                                style="background-color: #d86bd8; color: white;"
+                                >AC</button
+                            >
                     </div>
                 </section>
             </section>
@@ -214,16 +233,18 @@
         margin-top: 10px;
         height: $input-height;
         input {
-            height: 100%;
-            font-size: medium;
             width: fit-content;
+            height: 70%;
+            font-size: medium;
             background-color: #fff;
             color: black;
             font-weight: 700;
-            text-align: center;
+            padding-left: 10px;
+            // text-align: center;
         }
     }
     .keyboard {
+        margin-top: -20px;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
@@ -240,12 +261,13 @@
     @media only screen and (max-width: 600px) {
         .cadre {
             width: calc($cadre-width / 1.3);
+            padding: 0;
             .header {
                 width: 90%;
             }
         }
         .button {
-            width: calc($input-height / 0.7) !important;
+            width: calc($input-height / .7) !important;
         }
     }
 </style>
