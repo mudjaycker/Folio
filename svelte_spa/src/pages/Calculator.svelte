@@ -172,6 +172,7 @@
     .cadre {
         width: $cadre-width;
         border-radius: 10px;
+        @include vars.paddingY(10px);
         margin-top: 30px;
         margin-bottom: 30px;
         box-shadow: #683c7c inset 10px 10px 10px;
@@ -227,8 +228,6 @@
     @media only screen and (max-width: 600px) {
         .cadre {
             width: calc($cadre-width / 1.3);
-            @include vars.paddingY(100px);
-            background-color: #fff;
             .header {
                 width: 90%;
             }
