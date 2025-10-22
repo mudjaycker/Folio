@@ -35,6 +35,7 @@
     .clipboard {
         cursor: pointer;
         font-size: xx-large;
+        color: white;
     }
     .copiedStyle {
         font-size: medium;

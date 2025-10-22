@@ -186,7 +186,7 @@
     .cadre {
         width: $cadre-width;
         border-radius: 10px;
-        @include vars.paddingY(50px);
+        @include vars.paddingY(10px);
         margin-top: 30px;
         margin-bottom: 30px;
         box-shadow: #683c7c inset 10px 10px 10px;
