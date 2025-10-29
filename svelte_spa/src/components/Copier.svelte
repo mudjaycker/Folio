@@ -1,5 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import { loop } from "../utils";
 
     let isCopied = false;
     let span: HTMLSpanElement;
@@ -8,7 +9,6 @@
     async function copyTextToClipboard(text: string) {
         try {
             await navigator.clipboard.writeText(text);
-            isCopied = true;
         } catch (err) {
             console.error("Failed to copy text: ", err);
         }
@@ -16,13 +16,16 @@
 
     onMount(() => {
         span.onclick = () => {
-            copyTextToClipboard(String(value));
+            copyTextToClipboard(String(value)).then(()=>{
+                isCopied = true                
+            })
         };
     });
 
     $: if (isCopied) {
-        setTimeout(() => {
+        const time = setTimeout(() => {
             isCopied = false;
+            clearTimeout(time)
         }, 1000);
     }
 </script>
