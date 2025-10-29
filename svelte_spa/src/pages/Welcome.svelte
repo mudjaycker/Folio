@@ -8,10 +8,10 @@
         <section class="hero-body">
             <ul>
                 <li id="text1">
-                    My name is Maryimana, and I wish you welcome to my website
+                    Welcome to my website, my name is Maryimana.
                 </li>
                 <li id="text2">
-                    We going to make a tour (if you want obviously 😉)
+                    We are going to make a tour 😉
                 </li>
                 <li id="text3">
                     You just have to click to the button below 👇🏿
