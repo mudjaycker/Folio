@@ -175,7 +175,7 @@
                             class="button"
                             on:click={reset}
                             style="background-color: #d86bd8; color: white;"
-                            >AC</button
+                            >C</button
                         >
                     </div>
                 </section>
@@ -189,6 +189,7 @@
 
     $input-height: 50px;
     $cadre-width: 400px;
+    $cadre-height: 513px;
 
     .signes {
         @include vars.flex;
@@ -200,23 +201,25 @@
         }
     }
 
+
+
     .cadre {
         width: $cadre-width;
+        height: 75vh;
         border-radius: 10px;
-        @include vars.paddingY(15px);
+        // @include vars.paddingY(15px);
         margin-top: 30px;
         margin-bottom: 30px;
         box-shadow: #683c7c inset 10px 10px 10px;
         background-color: #864ea0;
 
         .header {
-            width: 350px;
             margin-bottom: 30px;
+            width: 90%;
             .screen {
                 input {
-                    height: $input-height;
                     width: 100%;
-                    font-size: 30px;
+                    font-size: x-large;
                 }
             }
         }
@@ -244,7 +247,7 @@
         }
     }
     .keyboard {
-        margin-top: -20px;
+        margin-top: -10px;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
@@ -258,19 +261,32 @@
         border: 0;
     }
 
-    @media only screen and (max-width: 600px) {
+
+  
+
+
+    @media only screen and (max-width: 1300px) {
         .cadre {
-            width: calc($cadre-width / 1.3);
-            .header {
-                width: 90%;
+            width: 80vw;
+            height: 70vh !important;
+
+            .button {
+                width: 20vw;
+                height: 5vh;
+                padding: 0;
             }
         }
-        .button {
-            width: calc($input-height / 0.7) !important;
-        }
 
-        .cadre-body {
-            @include vars.paddingY(10px);
+    }
+
+      @media only screen and (max-height: 400px) {
+        .cadre {
+            width: 80vw;
+            height: 100% !important;
         }
+        .button{
+            font-size: small !important;
+        }
+        
     }
 </style>
