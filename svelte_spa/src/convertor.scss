@@ -68,7 +68,20 @@ $bottomPosition: calc($height / 8);
 .copy {
     position: absolute;
     right: 0;
-    bottom: calc($bottomPosition * 1.2);
+    top: 70%;
+}
+
+@media only screen and (max-height: 500px) {
+    .input {
+        position: absolute;
+        top: -15%;
+    }
+
+    .content {
+        .result {
+            bottom: calc($bottomPosition * 0.2);
+        }
+    }
 }
 
 @media only screen and (max-width: 1034px) {
@@ -97,12 +110,6 @@ $bottomPosition: calc($height / 8);
             .input-base {
                 height: calc($height / 30);
             }
-        }
-
-        .copy {
-            position: absolute;
-            left: 0;
-            bottom: calc($bottomPosition * 1.6);
         }
     }
 }
