@@ -1,7 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { loop } from "../utils";
-
+    
     let isCopied = false;
     let span: HTMLSpanElement;
     export let value: any = "";
