@@ -163,20 +163,30 @@
                             style="background-color: #ff7f90;">Del</button
                         >
 
-                        {#each ["(", ")"] as p}
+                            {#each ["(", ")"] as p}
+                                <button
+                                    class="button"
+                                    on:click={() => pushEntry(p)}
+                                    style="background-color: #5709be; color: white;"
+                                    >{p}</button
+                                >
+                            {/each}
                             <button
                                 class="button"
-                                on:click={() => pushEntry(p)}
-                                style="background-color: #5709be; color: white;"
-                                >{p}</button
+                                on:click={() => pushEntry(".")}
+                                style="background-color: white; ">.</button
                             >
-                        {/each}
-                        <button
-                            class="button"
-                            on:click={reset}
-                            style="background-color: #d86bd8; color: white;"
-                            >C</button
-                        >
+                            <button
+                                class="button"
+                                on:click={() => pushEntry("%")}
+                                style="background- color: white;">%</button
+                            >
+                            <button
+                                class="button"
+                                on:click={reset}
+                                style="background-color: #d86bd8; color: white;"
+                                >C</button
+                            >
                     </div>
                 </section>
             </section>
@@ -201,15 +211,13 @@
         }
     }
 
-
-
     .cadre {
-        width: $cadre-width;
-        height: 75vh;
+        width: fit-content;
+        height: fit-content;
+        @include vars.paddingX(20px);
+        @include vars.marginY(15px);
+
         border-radius: 10px;
-        // @include vars.paddingY(15px);
-        margin-top: 30px;
-        margin-bottom: 30px;
         box-shadow: #683c7c inset 10px 10px 10px;
         background-color: #864ea0;
 
@@ -261,32 +269,26 @@
         border: 0;
     }
 
-
-  
-
-
     @media only screen and (max-width: 1300px) {
         .cadre {
-            width: 80vw;
-            height: 70vh !important;
-
+            // width: 80vw;
+            padding: 0;
             .button {
                 width: 20vw;
                 height: 5vh;
                 padding: 0;
             }
         }
-
     }
 
-      @media only screen and (max-height: 400px) {
+    @media only screen and (max-height: 400px) {
         .cadre {
-            width: 80vw;
-            height: 100% !important;
+            padding: 0;
+            width: fit-content;
+            @include vars.paddingX(10px)
         }
-        .button{
+        .button {
             font-size: small !important;
         }
-        
     }
 </style>

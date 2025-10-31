@@ -18,9 +18,9 @@ export class RoutesMaker {
                     href: route.href,
                     component: route.isStaticImport
                         ? route.component
-                        //@ts-ignore
-                        : (await route.component).default,
-                      isStaticImport: route.isStaticImport
+                        : //@ts-ignore
+                          (await route.component).default,
+                    isStaticImport: route.isStaticImport,
                 })
             );
         });

@@ -1,24 +1,21 @@
 <script lang="ts">
     import { onDestroy, onMount } from "svelte";
-    import { loop, range } from "../utils";
+    import { loop, multList, range } from "../utils";
 
     let d1 = new Date(),
         date = String(d1.getDate()),
         month: string = String(d1.getMonth() + 1),
         year = d1.getFullYear();
 
+    let ddot = ":";
+    let looped = loop(["|", "/", "-", "\\", ""]);
     let hEl: HTMLDivElement;
     let mEl: HTMLDivElement;
     let sEl: HTMLDivElement;
     let interval: Timer;
     let interval2: Timer;
-
-    const zfill = (value: number | string) => String(value).padStart(2, "0");
-
-    let seconds = "0";
-    let minutes = "0";
-    let hours = "0";
-
+    let intervals: Timer[] = [];
+    let [seconds, minutes, hours] = multList(["0"], 3);
     let weekday = [
         "Sunday",
         "Monday",
@@ -28,18 +25,19 @@
         "Friday",
         "Saturday",
     ];
+
+    const zfill = (value: number | string) => String(value).padStart(2, "0");
+
     date = zfill(date);
     month = zfill(month);
     let today = weekday[d1.getDay()],
         todayDate = date + "/" + month + "/" + year;
 
-    let ddot = ":";
-    let looped = loop(["|", "/", "-", "\\", ""]);
-
     onMount(() => {
-        interval2 = setInterval(() => {
+        const i1 = setInterval(() => {
             ddot = looped.next().value;
         }, 250);
+        intervals.push(i1);
 
         function clock() {
             let d = new Date(),
@@ -55,15 +53,15 @@
             sEl.style.transform = "rotate(" + sDeg + "deg)";
             seconds = zfill(s);
             minutes = zfill(m);
-            hours = zfill(h);
+            hours = zfill(h);            
         }
-        interval = setInterval(clock, 1000);
+        const i2 = setInterval(clock, 1000);
+        intervals.push(i2);
     });
 
     onDestroy(() => {
-        clearInterval(interval);
-        clearInterval(interval2);
-        console.log({ interval }, "onDestroy");
+        intervals.forEach((i) => clearInterval(i));
+        console.log({ intervals }, "destroyed");
     });
 </script>
 

@@ -50,3 +50,13 @@ export function isNumeric(value: string) {
     }
     return true;
 }
+
+export function multList<T>(array: T[], mult: number) {
+    let n = int(mult);
+    let res = [];
+
+    for (let _ of range(n)) {
+        res.push(...array);
+    }
+    return res;
+}
