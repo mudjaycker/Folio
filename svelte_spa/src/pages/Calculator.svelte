@@ -214,7 +214,6 @@
     .cadre {
         width: fit-content;
         height: fit-content;
-        @include vars.paddingX(20px);
         @include vars.marginY(15px);
 
         border-radius: 10px;
@@ -283,7 +282,6 @@
 
     @media only screen and (max-height: 400px) {
         .cadre {
-            width: fit-content;
             @include vars.paddingX(10px);
         }
         .button {
