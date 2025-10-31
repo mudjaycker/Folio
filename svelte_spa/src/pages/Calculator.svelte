@@ -272,7 +272,6 @@
     @media only screen and (max-width: 1300px) {
         .cadre {
             // width: 80vw;
-            padding: 0;
             .button {
                 width: 20vw;
                 height: 5vh;
