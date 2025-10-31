@@ -163,30 +163,30 @@
                             style="background-color: #ff7f90;">Del</button
                         >
 
-                            {#each ["(", ")"] as p}
-                                <button
-                                    class="button"
-                                    on:click={() => pushEntry(p)}
-                                    style="background-color: #5709be; color: white;"
-                                    >{p}</button
-                                >
-                            {/each}
+                        {#each ["(", ")"] as p}
                             <button
                                 class="button"
-                                on:click={() => pushEntry(".")}
-                                style="background-color: white; ">.</button
+                                on:click={() => pushEntry(p)}
+                                style="background-color: #5709be; color: white;"
+                                >{p}</button
                             >
-                            <button
-                                class="button"
-                                on:click={() => pushEntry("%")}
-                                style="background- color: white;">%</button
-                            >
-                            <button
-                                class="button"
-                                on:click={reset}
-                                style="background-color: #d86bd8; color: white;"
-                                >C</button
-                            >
+                        {/each}
+                        <button
+                            class="button"
+                            on:click={() => pushEntry(".")}
+                            style="background-color: white; ">.</button
+                        >
+                        <button
+                            class="button"
+                            on:click={() => pushEntry("%")}
+                            style="background- color: white;">%</button
+                        >
+                        <button
+                            class="button"
+                            on:click={reset}
+                            style="background-color: #d86bd8; color: white;"
+                            >C</button
+                        >
                     </div>
                 </section>
             </section>
@@ -271,7 +271,8 @@
 
     @media only screen and (max-width: 1300px) {
         .cadre {
-            // width: 80vw;
+            @include vars.paddingX(30px);
+            @include vars.marginY(15px);
             .button {
                 width: 20vw;
                 height: 5vh;
@@ -282,9 +283,8 @@
 
     @media only screen and (max-height: 400px) {
         .cadre {
-            padding: 0;
             width: fit-content;
-            @include vars.paddingX(10px)
+            @include vars.paddingX(10px);
         }
         .button {
             font-size: small !important;
