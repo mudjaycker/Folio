@@ -271,8 +271,8 @@
 
     @media only screen and (max-width: 1300px) {
         .cadre {
-            @include vars.paddingX(30px);
-            @include vars.marginY(15px);
+            @include vars.paddingX(20px);
+            @include vars.paddingY(10px);
             .button {
                 width: 20vw;
                 height: 5vh;
