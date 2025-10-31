@@ -226,7 +226,8 @@
             .screen {
                 input {
                     width: 100%;
-                    font-size: x-large;
+                    height: 30px;
+                    font-size: medium;
                 }
             }
         }
@@ -271,7 +272,7 @@
     @media only screen and (max-width: 1300px) {
         .cadre {
             @include vars.paddingX(20px);
-            @include vars.paddingY(10px);
+            @include vars.paddingY(20px);
             .button {
                 width: 20vw;
                 height: 5vh;
