@@ -36,22 +36,6 @@
         <button on:click={goBack} class="back-btn">👈🏿</button>
     {/if}
     <svelte:component this={$current_page.component as any} />
-    {#if pageName == "Presentation"}
-        <div class="infos-container">
-            <div class="infos">
-                {#each infos as info}
-                    <p>
-                        {info.name}:
-                        <!-- svelte-ignore a11y_click_events_have_key_events -->
-                        <!-- svelte-ignore a11y_no_static_element_interactions -->
-                        <!-- svelte-ignore a11y_missing_attribute -->
-                        <a on:click={() => openLink(info.link)}>{info.detail}</a
-                        >
-                    </p>
-                {/each}
-            </div>
-        </div>
-    {/if}
 </main>
 
 <style lang="scss">
@@ -60,25 +44,6 @@
         margin-left: 10px;
         font-size: xx-large;
         border-radius: 10px;
+        border: none;
     }
-    .infos-container {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        .infos {
-            color: white;
-            background-color: #2c2929;
-            // position: absolute;
-            margin-bottom: 50px;
-            padding: 10px;
-            width: 50vw;
-            justify-content: center;
-            a {
-                color: rgb(186, 189, 8);
-                cursor: pointer;
-            }
-        }
-    }
-    // @media only screen and (max-width: 600px) {
-    // }
 </style>

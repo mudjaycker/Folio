@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onDestroy, onMount } from "svelte";
-    import { loop, multList, range } from "../utils";
+    import { loop, multList, range, zfill } from "../utils";
 
     let d1 = new Date(),
         date = String(d1.getDate()),
@@ -8,12 +8,10 @@
         year = d1.getFullYear();
 
     let ddot = ":";
-    let looped = loop(["|", "/", "-", "\\", ""]);
+    let toBeLooped = loop(["|", "/", "-", "\\", ""]);
     let hEl: HTMLDivElement;
     let mEl: HTMLDivElement;
     let sEl: HTMLDivElement;
-    let interval: Timer;
-    let interval2: Timer;
     let intervals: Timer[] = [];
     let [seconds, minutes, hours] = multList(["0"], 3);
     let weekday = [
@@ -26,8 +24,6 @@
         "Saturday",
     ];
 
-    const zfill = (value: number | string) => String(value).padStart(2, "0");
-
     date = zfill(date);
     month = zfill(month);
     let today = weekday[d1.getDay()],
@@ -35,7 +31,7 @@
 
     onMount(() => {
         const i1 = setInterval(() => {
-            ddot = looped.next().value;
+            ddot = toBeLooped.next().value;
         }, 250);
         intervals.push(i1);
 
@@ -53,7 +49,7 @@
             sEl.style.transform = "rotate(" + sDeg + "deg)";
             seconds = zfill(s);
             minutes = zfill(m);
-            hours = zfill(h);            
+            hours = zfill(h);
         }
         const i2 = setInterval(clock, 1000);
         intervals.push(i2);

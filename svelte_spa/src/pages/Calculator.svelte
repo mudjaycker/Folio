@@ -4,22 +4,23 @@
     import Copier from "../components/Copier.svelte";
 
     let result: number | string;
-    let entry = "0";
+    let entry = "";
     let entryInput: HTMLInputElement;
     let resultInput: HTMLInputElement;
+    let valuesList = [...range(1, 10), "%", "."];
 
     const reset = () => {
-        entry = "0";
+        entry = "";
     };
 
     $: entryLen = String(entry).length;
-    $: if (!entry) result = "0";
-    $: if (entry.substring(0, 1) === "0" && entry.length > 1) {
+    $: if (entry.startsWith("0") && entry.length > 1) {
         entry = entry.substring(1);
     }
+    $: if (!entry) result = "0";
 
     let authorizeds = [
-        ...Array.from(range(10)).map((x) => x.toString()),
+        ...range(10).map((x) => x.toString()),
         "+",
         "-",
         "/",
@@ -39,16 +40,16 @@
         entry = entry.slice(0, entryLen - 1);
     }
 
-    $: {
+    $: (async () => {
         try {
             result = eval(entry);
             if (result == Infinity) {
                 result = "😳 wow Infinity";
             }
         } catch {
-            entry = filterNumIn(entry, authorizeds);
+            entry = await filterNumIn(entry, authorizeds);
         } // Only authorizeds values are allowed
-    }
+    })();
 
     $: {
         if (!!entryInput) {
@@ -119,7 +120,7 @@
                     </section>
 
                     <div class="keyboard">
-                        {#each range(1, 10) as key}
+                        {#each valuesList as key}
                             <button
                                 class="button"
                                 on:click={() => pushEntry(key)}>{key}</button
@@ -157,11 +158,6 @@
                         >
                             ⨸
                         </button>
-                        <button
-                            class="button signes"
-                            on:click={popEntry}
-                            style="background-color: #ff7f90;">Del</button
-                        >
 
                         {#each ["(", ")"] as p}
                             <button
@@ -171,16 +167,13 @@
                                 >{p}</button
                             >
                         {/each}
+
                         <button
-                            class="button"
-                            on:click={() => pushEntry(".")}
-                            style="background-color: white; ">.</button
+                            class="button signes"
+                            on:click={popEntry}
+                            style="background-color: #ff7f90;">Del</button
                         >
-                        <button
-                            class="button"
-                            on:click={() => pushEntry("%")}
-                            style="background- color: white;">%</button
-                        >
+
                         <button
                             class="button"
                             on:click={reset}
@@ -215,6 +208,7 @@
         width: fit-content;
         height: fit-content;
         @include vars.marginY(15px);
+        @include vars.paddingX(20px);
 
         border-radius: 10px;
         box-shadow: #683c7c inset 10px 10px 10px;

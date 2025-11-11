@@ -1,8 +1,9 @@
 <script lang="ts">
     import "../../convertor.scss";
     import convert from "./utils/convert";
-    import { entryStore } from "../../store";
     import Copier from "../../components/Copier.svelte";
+    import { isPositiveNumber, list, range, take } from "../../utils";
+    import { entryStore } from "../../store";
 
     /* -------------------------------- Variables ------------------------------- */
     let numberEntry: string = "",
@@ -14,35 +15,52 @@
         result = "";
     /* ----------------------------------- End ---------------------------------- */
 
+    /* -------------------------------- functions ------------------------------- */
+    const fixMaxBase = (num: number) => (num > 36 ? 36 : num);
+    const isSupportedBase = (num: number) => !!num && num > 1;
+    /* ----------------------------------- end ---------------------------------- */
+
     /* -------------------------------- Computeds ------------------------------- */
     $: {
-        if (!from_ || from_ == 1 || !to || to == 1) {
-            result = "";
+        if (!isSupportedBase(from_) || !isSupportedBase(to)) {
+            result = "0";
         } else {
             try {
                 result = convert(numberEntry, from_, to);
                 $entryStore = numberEntry; //Store the entry to make it available globally
             } catch (e) {
-                console.log(e);
-                numberEntry = $entryStore; //Get the entry last sta
+                numberEntry = $entryStore; //Replace the entry
             }
         }
 
-        const fixMaxBase = (num: number) => (num > 36 ? 36 : num);
         from_ = fixMaxBase(from_);
         to = fixMaxBase(to);
     }
 
     $: {
-        let lastChar = result[result.length - 1];
+        let lastChar = take(result, -1);
         if (lastChar == "0") {
-            let r = result.split("");
-            r.pop();
-            result = r.join("");
+            result = result.slice(0, -1);
         }
     }
-
     /* ----------------------------------- End ---------------------------------- */
+
+    /* ----------------------------- fix base value ----------------------------- */
+    function fixBaseValue(base: number) {
+        let result = list(String(base))
+            .filter((x) => isPositiveNumber(x))
+            .join("");
+
+        return Number(result);
+    }
+
+    $: {
+        //@ts-ignore
+        from_ = fixBaseValue(from_) || "";
+        //@ts-ignore
+        to = fixBaseValue(to) || "";
+    }
+    /* ----------------------------------- end ---------------------------------- */
 </script>
 
 <main class="container">
@@ -58,16 +76,10 @@
             <input
                 bind:this={baseFromInput}
                 bind:value={from_}
-                type="number"
                 class="input-base"
             />
             <span>To base</span>
-            <input
-                bind:this={baseToInput}
-                bind:value={to}
-                type="number"
-                class="input-base"
-            />
+            <input bind:value={to} class="input-base" />
         </div>
         <div class="result">{result}</div>
         {#if !!result}

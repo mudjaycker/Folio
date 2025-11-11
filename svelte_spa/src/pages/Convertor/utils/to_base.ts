@@ -12,8 +12,8 @@ function to_base(_number: number | string, base: number | string = 2) {
   while (temp > 0) {
     let mod = temp % base;
     temp = int(temp / base);
-    let mod2 = NUM_MAP.get(mod);
-    result = mod2 + result;
+    let valFromMap = NUM_MAP.get(mod);
+    result = valFromMap + result;
   }
   return result;
 }

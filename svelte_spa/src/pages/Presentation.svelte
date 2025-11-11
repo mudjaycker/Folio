@@ -1,50 +1,88 @@
 <script lang="ts">
     import { cubicInOut } from "svelte/easing";
-    import { slide, fly } from "svelte/transition";
+    // import { slide, fly } from "svelte/transition";
+    import Spinner from "../components/Spinner.svelte";
+    import { onMount } from "svelte";
+    import { range } from "../utils";
+    import Infos from "../components/Infos.svelte";
     // import photo from "../assets/Karos-.jpg";
     // import clockImage from "../assets/clock.svg";
     // import calculatorImage from "../assets/calculator.svg";
 
-    let realisations = [
-        { title: "ascii", img: "/images/base_convertor.svg", href: "/ascii" },
+    type T_Realisation = {
+        title: string;
+        img: string;
+        href: string;
+        isLoadedImg: boolean;
+    };
+
+    let realisations: T_Realisation[] = [
+        {
+            title: "ascii",
+            img: "/images/base_convertor.svg",
+            href: "/ascii",
+            isLoadedImg: false,
+        },
         {
             title: "simple calculator",
             img: "/images/calculator.svg",
             href: "/calculator",
+            isLoadedImg: false,
         },
-        { title: "analogic clock", img: "/images/clock.svg", href: "/clock" },
+        {
+            title: "analogic clock",
+            img: "/images/clock.svg",
+            href: "/clock",
+            isLoadedImg: false,
+        },
         {
             title: "bases convertor",
             img: "/images/base_convertor.svg",
             href: "/convertor",
+            isLoadedImg: false,
         },
     ];
+
+    const loadImage = async (obj: T_Realisation) => {
+        const res = fetch(obj.href);
+        return [(await res).url, true];
+    };
 
     type axisType = "x" | "y";
 
     const transition = { x: -10, y: -50, duration: 1500 };
     const slideIn = {
         axis: "y" as axisType,
-        duration: 2000,
+        duration: 1000,
         easing: cubicInOut,
     };
     const slideOut = {
         axis: "x" as axisType,
-        duration: 2000,
+        duration: 1500,
         easing: cubicInOut,
     };
+
+    onMount(async () => {
+        for (let i of range(realisations.length)) {
+            let res = await loadImage(realisations[i]);
+            //@ts-ignore
+            realisations[i].isLoadedImg = res[1];
+            //@ts-ignore
+            realisations[i].href = res[0];
+        }
+    });
 </script>
 
 <main>
     <section class="hero">
-        <section class="title" transition:fly={transition}>
+        <section class="title">
             <h1>
                 😎 <span
                     >Here are few examples of what I can do just for fun 👇🏿</span
                 >
             </h1>
         </section>
-        <section class="columns" in:slide={slideIn} out:slide={slideOut}>
+        <section class="columns">
             {#each realisations as real}
                 <div class="column">
                     <div class="card">
@@ -52,12 +90,16 @@
                             <span class="card-header-title">{real.title}</span>
                         </div>
                         <div class="card-content">
-                            <img
-                                class="card-image"
-                                alt=""
-                                src={real.img}
-                                loading="lazy"
-                            />
+                            {#if !real.isLoadedImg}
+                                <Spinner />
+                            {:else}
+                                <img
+                                    class="card-image"
+                                    alt=""
+                                    src={real.img}
+                                    loading="lazy"
+                                />
+                            {/if}
                         </div>
                         <div class="card-footer">
                             <a class="button" href={real.href}>See</a>
@@ -67,6 +109,7 @@
             {/each}
         </section>
     </section>
+    <Infos />
 </main>
 
 <style lang="scss">
@@ -76,20 +119,13 @@
         flex-direction: column;
     }
 
-    .title {
-        h1 {
-            span {
-                font-style: italic;
-            }
-        }
-    }
     .columns {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 10px;
         margin-top: 50px;
         margin-bottom: 50px;
-        overflow-y: auto;
+        overflow: auto !important;
         padding-right: 0;
         // border: solid 1px black
     }
@@ -109,15 +145,14 @@
 
     .card-header {
         background-color: #f0f1fa;
-        display: flex;
     }
     .card-header-title {
         display: flex;
-        align-items: center;
+        justify-content: center;
         color: #353333;
         flex-grow: 1;
-        padding: 10px;
     }
+
     .card-footer {
         display: flex;
         flex-direction: column;
@@ -128,6 +163,22 @@
         margin: 0;
     }
 
+    @media only screen and (max-width: 900px) {
+        .columns {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .title {
+            margin-top: 10px;
+            &:first-child {
+                font-size: 10px;
+            }
+        }
+    }
+
+    
     @media only screen and (max-width: 600px) {
         .columns {
             display: grid;
@@ -136,8 +187,8 @@
         }
 
         .title {
-            font-size: x-small;
-            margin-top: 20px;
+            font-size: 10px !important;
+
             @include vars.paddingX(20px);
         }
     }

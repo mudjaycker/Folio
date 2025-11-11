@@ -3,8 +3,8 @@ import to_base from "./to_base";
 
 export default function convert(
   str: string | number,
-  from_: number = 2,
-  to: number = 10
+  from_: number,
+  to: number
 ) {
   /* -------------------- convert from any base to any base ------------------- */
   str = typeof str == "number" ? String(str) : str;

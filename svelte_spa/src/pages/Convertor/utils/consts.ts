@@ -1,4 +1,4 @@
-import { range } from "../../../utils";
+import { int, range } from "../../../utils";
 
 export const upLetters = [
   "A",
@@ -28,12 +28,6 @@ export const upLetters = [
   "Y",
   "Z",
 ];
-const lowLetters = upLetters.map((l) => l.toLowerCase());
-
-export const letters = [
-  ...upLetters,
-  ...lowLetters
-]
 
 const NUM_MAP: Map<number, string> = new Map();
 
@@ -42,7 +36,7 @@ for (let i of range(10)) {
 }
 
 for (let i in upLetters) {
-  NUM_MAP.set(Number(i) + 10, upLetters[i]);
+  NUM_MAP.set(int(i) + 10, upLetters[i]);
 }
 
 export default NUM_MAP;

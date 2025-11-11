@@ -1,12 +1,8 @@
 export const list = Array.from;
 export const print_ = console.log;
-export const int = (num: string | number) => {
-    if (!num) {
-        return 0;
-    } else {
-        return parseInt(`${Number(num)}`);
-    }
-};
+export const int = (num: string | number) =>
+    !num ? 0 : parseInt(`${Number(num)}`);
+
 export function* range(
     begin: number,
     end: number | undefined = undefined,
@@ -34,29 +30,40 @@ export function* loop<T>(iterable: Iterable<T>): Generator<T> {
     }
 }
 
-export const filterNumIn = (num: string | number, chars: string[]) => {
+export function* enumerate<T>(array: T[]) {
+    for (let i of range(array.length)) {
+        yield [i, array[i]];
+    }
+}
+
+export function take<T>(array: ArrayLike<T>, val: number) {
+    const datas = list(array);
+    return val < 0 ? datas[datas.length + val] : datas[val];
+}
+
+export const filterNumIn = async (num: string | number, chars: string[]) => {
     return String(num)
         .split("")
         .filter((x) => chars.includes(x))
         .join("");
 };
 
-export function isNumeric(value: string) {
-    const numbers = list(range(0, 10)).map((i) => String(i)); // list from 0 to 9
-    for (let i of value) {
-        if (!numbers.includes(i)) {
-            return false;
-        }
-    }
-    return true;
+export function isPositiveNumber(chars: string) {
+    const numbers = list(range(10)).map((i) => String(i)); // list from string 0 to  string 9
+    let conditions = list(chars).map((x) => numbers.includes(x));
+    return conditions.every(Boolean);
 }
 
-export function multList<T>(array: T[], mult: number) {
-    let n = int(mult);
-    let res = [];
+export function multList<T>(array: ArrayLike<T>, mult: number) {
+    let arrayList = list(array);
+    const n = int(mult);
+    const res = [];
 
     for (let _ of range(n)) {
-        res.push(...array);
+        res.push(...arrayList);
     }
     return res;
 }
+
+export const zfill = (value: number | string, zeros = 2) =>
+    String(value).padStart(zeros, "0");
