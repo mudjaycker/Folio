@@ -9,7 +9,7 @@
         height: number;
     };
 
-    let text = "jeux";
+    let text = "";
     let shape: "square" | "circle" = "circle";
 
     $: config = {
