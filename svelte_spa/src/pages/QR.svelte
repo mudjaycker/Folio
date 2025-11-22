@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { createQrSvgString, createQrSvgDataUrl } from "@svelte-put/qr";
+    import { createQrSvgString, createQrPngDataUrl } from "@svelte-put/qr";
     import { type QRConfig } from "../../node_modules/@svelte-put/qr/src/qr/types.public";
     import logo from "../assets/Flag_of_Burundi.svg";
     import { replace } from "../utils";
@@ -15,13 +15,19 @@
     $: config = {
         data: text,
         shape: shape,
-        // width: 300,
         anchorOuterFill: "#e22a2a",
     } as QRConfig & Partial<SizeAttributes>;
 
-    $: dataURL = createQrSvgDataUrl(config);
+    let url = "";
     $: svgString = createQrSvgString({ ...config, logo: logo });
     $: len = text.length;
+
+    $: createQrPngDataUrl({
+        ...config,
+        width: 300,
+        height: 300,
+        backgroundFill: "white",
+    }).then((res) => (url = res));
 
     const maxLen = 200;
 
@@ -32,7 +38,7 @@
     function formatFileName(str_text: string) {
         let name = str_text.substring(0, 25).toLowerCase();
         name = replace(name, [" ", "-"], "_");
-        return "qr" + "_" + name + ".svg";
+        return "qr" + "_" + name + ".png";
     }
 </script>
 
@@ -58,7 +64,7 @@
             <div class="qr">
                 {@html svgString}
             </div>
-            <a class="button" href={dataURL} download={formatFileName(text)}
+            <a class="button" href={url} download={formatFileName(text)}
                 >download</a
             >
         </div>
@@ -103,7 +109,8 @@
             }
 
             .result {
-                display: flex;.button {
+                display: flex;
+                .button {
                     width: 160px !important;
                 }
                 width: 100vw;
@@ -115,7 +122,7 @@
                     margin-top: 30px;
                     margin-bottom: 5px;
                 }
-                
+
                 .button {
                     width: 160px !important;
                 }
