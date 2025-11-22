@@ -109,9 +109,11 @@
 
             .result {
                 display: flex;
+
                 .button {
                     width: 160px !important;
                 }
+                
                 width: 100vw;
                 justify-content: center !important;
                 align-items: center;
