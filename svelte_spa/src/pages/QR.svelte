@@ -85,6 +85,7 @@
     .result {
         display: flex;
         flex-direction: column;
+        
         .qr {
             background-color: #fff;
             width: 300px;
@@ -102,31 +103,26 @@
             flex-direction: column;
             margin-top: 5%;
             margin-bottom: 2%;
+        }
 
-            .form {
-                margin-left: 2.5%;
+        .form {
+            margin-left: 2.5%;
+        }
+
+        .result {
+            display: flex;
+            width: 100vw;
+            justify-content: center !important;
+            align-items: center;
+
+            .qr {
+                width: 200px !important;
+                margin-top: 30px;
+                margin-bottom: 5px;
             }
 
-            .result {
-                display: flex;
-
-                .button {
-                    width: 160px !important;
-                }
-                
-                width: 100vw;
-                justify-content: center !important;
-                align-items: center;
-
-                .qr {
-                    width: 200px !important;
-                    margin-top: 30px;
-                    margin-bottom: 5px;
-                }
-
-                .button {
-                    width: 160px !important;
-                }
+            .button {
+                width: 160px !important;
             }
         }
     }
