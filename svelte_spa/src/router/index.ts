@@ -38,6 +38,12 @@ const router = new RoutesMaker([
     component: import("../pages/Ascii.svelte"),
     isStaticImport: false,
   },
+  {
+    name: "QR",
+    href: "/qr",
+    component: import("../pages/QR.svelte"),
+    isStaticImport: false,
+  },
 ]);
 
 router.makeRoutes();

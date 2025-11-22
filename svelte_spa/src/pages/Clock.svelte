@@ -7,14 +7,15 @@
         month: string = String(d1.getMonth() + 1),
         year = d1.getFullYear();
 
-    let ddot = ":";
-    let toBeLooped = loop(["|", "/", "-", "\\", ""]);
-    let hEl: HTMLDivElement;
-    let mEl: HTMLDivElement;
-    let sEl: HTMLDivElement;
-    let intervals: Timer[] = [];
-    let [seconds, minutes, hours] = multList(["0"], 3);
-    let weekday = [
+    let ddot = ":",
+        animations = loop(["|", "/", "-", "\\", ""]),
+        hEl: HTMLDivElement,
+        mEl: HTMLDivElement,
+        sEl: HTMLDivElement,
+        intervals: any[] = [],
+        [seconds, minutes, hours] = multList(["0"], 3);
+
+    const weekday = [
         "Sunday",
         "Monday",
         "Tuesday",
@@ -31,7 +32,7 @@
 
     onMount(() => {
         const i1 = setInterval(() => {
-            ddot = toBeLooped.next().value;
+            ddot = animations.next().value;
         }, 250);
         intervals.push(i1);
 

@@ -67,3 +67,21 @@ export function multList<T>(array: ArrayLike<T>, mult: number) {
 
 export const zfill = (value: number | string, zeros = 2) =>
     String(value).padStart(zeros, "0");
+
+export function replace(str: string, from_: string[], to: string) {
+    let res = ""
+    for(let i of str){
+        if(from_.includes(i)){
+            res += to
+            
+        }else{
+            res+=i
+        }
+    }
+    
+    return res;
+}
+
+// let txt = "jeux de malade-avec plein de chose";
+
+// print_( replace(txt, [" ", "-"], "_"));

@@ -1,9 +1,5 @@
 <script lang="ts">
     import { cubicInOut } from "svelte/easing";
-    // import { slide, fly } from "svelte/transition";
-    import Spinner from "../components/Spinner.svelte";
-    import { onMount } from "svelte";
-    import { range } from "../utils";
     import Infos from "../components/Infos.svelte";
     // import photo from "../assets/Karos-.jpg";
     // import clockImage from "../assets/clock.svg";
@@ -13,7 +9,6 @@
         title: string;
         img: string;
         href: string;
-        isLoadedImg: boolean;
     };
 
     let realisations: T_Realisation[] = [
@@ -21,32 +16,28 @@
             title: "ascii",
             img: "/images/base_convertor.svg",
             href: "/ascii",
-            isLoadedImg: false,
         },
         {
             title: "simple calculator",
             img: "/images/calculator.svg",
             href: "/calculator",
-            isLoadedImg: false,
         },
         {
             title: "analogic clock",
             img: "/images/clock.svg",
             href: "/clock",
-            isLoadedImg: false,
         },
         {
             title: "bases convertor",
             img: "/images/base_convertor.svg",
             href: "/convertor",
-            isLoadedImg: false,
+        },
+        {
+            title: "QRCode",
+            img: "/images/qr-Maryimana.svg",
+            href: "/qr",
         },
     ];
-
-    const loadImage = async (obj: T_Realisation) => {
-        const res = fetch(obj.href);
-        return [(await res).url, true];
-    };
 
     type axisType = "x" | "y";
 
@@ -61,16 +52,6 @@
         duration: 1500,
         easing: cubicInOut,
     };
-
-    onMount(async () => {
-        for (let i of range(realisations.length)) {
-            let res = await loadImage(realisations[i]);
-            //@ts-ignore
-            realisations[i].isLoadedImg = res[1];
-            //@ts-ignore
-            realisations[i].href = res[0];
-        }
-    });
 </script>
 
 <main>
@@ -90,16 +71,12 @@
                             <span class="card-header-title">{real.title}</span>
                         </div>
                         <div class="card-content">
-                            {#if !real.isLoadedImg}
-                                <Spinner />
-                            {:else}
-                                <img
-                                    class="card-image"
-                                    alt=""
-                                    src={real.img}
-                                    loading="lazy"
-                                />
-                            {/if}
+                            <img
+                                class="card-image"
+                                alt=""
+                                src={real.img}
+                                loading="lazy"
+                            />
                         </div>
                         <div class="card-footer">
                             <a class="button" href={real.href}>See</a>
@@ -178,7 +155,6 @@
         }
     }
 
-    
     @media only screen and (max-width: 600px) {
         .columns {
             display: grid;

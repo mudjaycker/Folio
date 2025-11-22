@@ -29,7 +29,7 @@
 </script>
 
 <svelte:head>
-    <title>{pageName} by Maryimana</title>
+    <title>{pageName}</title>
 </svelte:head>
 <main>
     {#if pageName != "Welcome"}
