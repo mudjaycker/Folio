@@ -80,12 +80,18 @@
         display: flex;
         flex-direction: column;
         margin-right: 10px;
+
+        textarea{
+            font-family:  'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            padding: 10px;
+            font-size: 16px;
+        }
     }
 
     .result {
         display: flex;
         flex-direction: column;
-        
+
         .qr {
             background-color: #fff;
             width: 300px;
