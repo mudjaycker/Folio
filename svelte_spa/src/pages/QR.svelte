@@ -10,16 +10,17 @@
     };
 
     let text = "";
-    let shape: "square" | "circle" = "circle";
+    let url = "";
+    let shape: "square" | "circle" = "square";
+    const maxTextLen = 200;
 
     $: config = {
         data: text,
         shape: shape,
-        anchorOuterFill: "#e22a2a",
+        // anchorOuterFill: "#e22a2a",
     } as QRConfig & Partial<SizeAttributes>;
 
-    let url = "";
-    $: svgString = createQrSvgString({ ...config, logo: logo });
+    $: svgString = createQrSvgString({ ...config, logo });
     $: len = text.length;
 
     $: createQrPngDataUrl({
@@ -29,14 +30,12 @@
         backgroundFill: "white",
     }).then((res) => (url = res));
 
-    const maxLen = 200;
-
     function tooggleShape() {
         shape = shape === "circle" ? "square" : "circle";
     }
 
     function formatFileName(str_text: string) {
-        let name = str_text.substring(0, 25).toLowerCase();
+        let name = str_text.substring(0, 25);
         name = replace(name, [" ", "-"], "_");
         return "qr" + "_" + name + ".png";
     }
@@ -46,15 +45,15 @@
     <div class="form">
         <textarea
             bind:value={text}
-            maxlength={maxLen}
+            maxlength={maxTextLen}
             rows="5"
             cols="60"
-            placeholder={"The max number of characters is " + maxLen}
+            placeholder={"The max number of characters is " + maxTextLen}
         ></textarea>
 
         {#if text}
-            <button class="button" on:click={tooggleShape}
-                >Toggle Shape (current: {shape}) | {len}/{maxLen} chars</button
+            <button class="button" on:click={tooggleShape}>
+                Shape: {shape} | Chars: {len}/{maxTextLen}</button
             >
         {/if}
     </div>
