@@ -20,3 +20,7 @@
     margin-top: $value;
     margin-bottom: $value;
 }
+
+@function percent($n, $percent-number) {
+    @return calc(($n * $percent-number) / 100);
+}

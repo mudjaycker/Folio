@@ -25,8 +25,9 @@
 
     $: createQrPngDataUrl({
         ...config,
-        width: 300,
-        height: 300,
+        logo,
+        width: 500,
+        height: 500,
         backgroundFill: "white",
     }).then((res) => (url = res));
 
@@ -71,6 +72,8 @@
 </section>
 
 <style lang="scss">
+    @use "../vars.scss" as v;
+
     section {
         display: flex;
         justify-content: center;
@@ -81,8 +84,9 @@
         flex-direction: column;
         margin-right: 10px;
 
-        textarea{
-            font-family:  'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        textarea {
+            font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+                sans-serif;
             padding: 10px;
             font-size: 16px;
         }
@@ -105,6 +109,8 @@
     }
 
     @media only screen and (max-width: 700px) {
+        $qr-width: 200px;
+
         section {
             flex-direction: column;
             margin-top: 5%;
@@ -122,13 +128,13 @@
             align-items: center;
 
             .qr {
-                width: 200px !important;
+                width: $qr-width;
                 margin-top: 30px;
                 margin-bottom: 5px;
             }
 
             .button {
-                width: 160px !important;
+                width: v.percent($qr-width, 80);
             }
         }
     }
