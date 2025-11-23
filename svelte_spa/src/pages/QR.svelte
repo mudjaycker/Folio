@@ -1,13 +1,8 @@
 <script lang="ts">
     import { createQrSvgString, createQrPngDataUrl } from "@svelte-put/qr";
-    import { type QRConfig } from "../../node_modules/@svelte-put/qr/src/qr/types.public";
     import logo from "../assets/Flag_of_Burundi.svg";
     import { replace } from "../utils";
-
-    type SizeAttributes = {
-        width: number;
-        height: number;
-    };
+    import type { QrConfigParams } from "../types";
 
     let text = "";
     let url = "";
@@ -18,7 +13,7 @@
         data: text,
         shape: shape,
         // anchorOuterFill: "#e22a2a",
-    } as QRConfig & Partial<SizeAttributes>;
+    } as QrConfigParams;
 
     $: svgString = createQrSvgString({ ...config, logo });
     $: len = text.length;
@@ -108,7 +103,7 @@
         text-align: center;
     }
 
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 764px) {
         $qr-width: 200px;
 
         section {
@@ -118,7 +113,9 @@
         }
 
         .form {
-            margin-left: 2.5%;
+            margin-left: 5%;
+            margin-right: 5%;
+            width: 90%;
         }
 
         .result {

@@ -1,6 +1,5 @@
 @use "./vars.scss" as vars;
 
-
 @font-face {
     font-family: "f_i";
     src: url("../fonts/FiraCodeiScript-Italic.ttf") format("truetype");
@@ -14,7 +13,9 @@
 
 body {
     background-color: #4f56dd;
+    overflow-x: hidden;
 }
+
 .hero {
     width: 100vw;
     @include vars.flex;

@@ -136,7 +136,7 @@
                         >
                         <button
                             class="button signes"
-                            style="background-color: #887d83;"
+                            style="background-color: #dbb2c9;"
                             on:click={() => pushEntry("-")}
                         >
                             ➖
@@ -163,7 +163,7 @@
                             <button
                                 class="button"
                                 on:click={() => pushEntry(p)}
-                                style="background-color: #5709be; color: white;"
+                                style="background-color: #ca5a7c; color: white;"
                                 >{p}</button
                             >
                         {/each}
@@ -211,8 +211,8 @@
         @include vars.paddingX(20px);
 
         border-radius: 10px;
-        box-shadow: #683c7c inset 10px 10px 10px;
-        background-color: #864ea0;
+        box-shadow: #3d7b9e inset 10px 10px 10px;
+        background-color: #055685;
 
         .header {
             margin-bottom: 30px;

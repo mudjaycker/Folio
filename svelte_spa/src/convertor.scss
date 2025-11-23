@@ -13,9 +13,6 @@ $width: 800px;
 $height: 500px;
 $bottomPosition: calc($height / 8);
 
-// :global(body) {
-// overflow-y: hidden !important;
-// }
 .container {
     position: absolute;
     @include flexi;

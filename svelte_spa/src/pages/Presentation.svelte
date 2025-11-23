@@ -1,9 +1,5 @@
 <script lang="ts">
-    import { cubicInOut } from "svelte/easing";
     import Infos from "../components/Infos.svelte";
-    // import photo from "../assets/Karos-.jpg";
-    // import clockImage from "../assets/clock.svg";
-    // import calculatorImage from "../assets/calculator.svg";
 
     type T_Realisation = {
         title: string;
@@ -33,25 +29,12 @@
             href: "/convertor",
         },
         {
-            title: "QRCode",
+            title: "QRCode maker",
             img: "/images/qr-Maryimana.svg",
             href: "/qr",
         },
     ];
 
-    type axisType = "x" | "y";
-
-    const transition = { x: -10, y: -50, duration: 1500 };
-    const slideIn = {
-        axis: "y" as axisType,
-        duration: 1000,
-        easing: cubicInOut,
-    };
-    const slideOut = {
-        axis: "x" as axisType,
-        duration: 1500,
-        easing: cubicInOut,
-    };
 </script>
 
 <main>
@@ -95,7 +78,7 @@
     .hero {
         flex-direction: column;
     }
-
+    
     .columns {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
