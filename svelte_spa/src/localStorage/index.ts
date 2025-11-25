@@ -6,14 +6,14 @@ class LStorage {
   }
 
   private fromString(data: string | null) {
-    return data ? JSON.parse(data) : [];
+    return data ? JSON.parse(data) : null;
   }
 
   private toString(data: Object | null) {
     return JSON.stringify(data || []);
   }
 
-  get data() {
+  get() {
     return this.fromString(localStorage.getItem(this.name));
   }
 

@@ -1,5 +1,7 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import Infos from "../components/Infos.svelte";
+    import lstorage from "../localStorage";
 
     type T_Realisation = {
         title: string;
@@ -35,6 +37,25 @@
         },
     ];
 
+    const cacheImage = async (url: string) => {
+        const response = await fetch(url);
+        const blob = await response.blob();
+
+        const reader = new FileReader();
+
+        reader.onload = () => {
+            lstorage(url).set(reader.result);
+        };
+        reader.readAsDataURL(blob);
+    };
+
+    onMount(() => {
+        realisations.forEach(async (r) => {
+            if (!lstorage(r.img).get()) {
+                await cacheImage(r.img);
+            }
+        });
+    });
 </script>
 
 <main>
@@ -47,17 +68,19 @@
             </h1>
         </section>
         <section class="columns">
-            {#each realisations as real}
+            {#each realisations as real, i}
                 <div class="column">
                     <div class="card">
                         <div class="card-header">
-                            <span class="card-header-title">{real.title}</span>
+                            <span class="card-header-title"
+                                >{i + 1}-{real.title}</span
+                            >
                         </div>
                         <div class="card-content">
                             <img
                                 class="card-image"
                                 alt=""
-                                src={real.img}
+                                src={lstorage(real.img).get() || real.img}
                                 loading="lazy"
                             />
                         </div>
@@ -78,7 +101,7 @@
     .hero {
         flex-direction: column;
     }
-    
+
     .columns {
         display: grid;
         grid-template-columns: repeat(4, 1fr);

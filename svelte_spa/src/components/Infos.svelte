@@ -14,7 +14,7 @@
     let infos = [
         { name: "Github", link: githublink, detail: "mudjaycker" },
         { name: "Telegram", link: telegramlink, detail: "mudjaygram" },
-        { name: "Whatsapp", link: whatsapplink, detail: "00257772037069" },
+        { name: "Whatsapp", link: whatsapplink, detail: "0025772037069" },
         // { name: "Gmail", link: gmaillink, detail: "maryimana983@gmail.com" },
         { name: "Linkedin", link: linkedinlink, detail: "maryimana" },
     ];
